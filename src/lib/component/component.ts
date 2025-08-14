@@ -1,7 +1,7 @@
-import { isTopLevelModel } from './is-top-level-model';
+import { isTopLevelModel } from '../tools/is-top-level-model';
+import { splitByTopLevelDelimiter } from '../tools/split-by-top-level-delimiter';
+import { stripTopLevelModel } from '../tools/strip-top-level-model';
 import { delimeters, primaryDelimiters } from './delimeters';
-import { splitByTopLevelDelimiter } from './split-by-top-level-delimiter';
-import { stripTopLevelModel } from './strip-top-level-model';
 
 export interface ModelComponent<T extends string> {
   type: 'model';

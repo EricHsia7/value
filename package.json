@@ -1,0 +1,50 @@
+{
+  "name": "@erichsia7/value",
+  "version": "0.0.1",
+  "description": "",
+  "private": false,
+  "scripts": {
+    "build": "webpack --mode=production",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EricHsia7/value.git"
+  },
+  "keywords": [],
+  "author": "EricHsia7",
+  "bugs": {
+    "url": "https://github.com/erichsia7/value/issues"
+  },
+  "homepage": "https://erichsia7.github.io/value/",
+  "devDependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/plugin-syntax-flow": "^7.27.1",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-flow": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@typescript-eslint/eslint-plugin": "^8.23.0",
+    "@typescript-eslint/parser": "^8.23.0",
+    "babel-loader": "^10.0.0",
+    "babel-preset-modules": "^0.0.2",
+    "canvas": "^3.0.0",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "cssnano-preset-advanced": "^7.0.6",
+    "eslint-webpack-plugin": "^4.2.0",
+    "eslint": "^9.19.0",
+    "gh-pages": "^6.1.1",
+    "html-webpack-plugin": "^5.6.0",
+    "mangle-css-class-webpack-plugin": "^5.1.0",
+    "md5": "^2.3.0",
+    "mini-css-extract-plugin": "^2.9.1",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "webpack-cli": "^6.0.1",
+    "webpack-subresource-integrity": "^5.1.0",
+    "webpack": "^5.99.7",
+    "workbox-webpack-plugin": "^7.3.0"
+  },
+  "dependencies": {
+    "localforage": "^1.10.0"
+  }
+}

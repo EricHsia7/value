@@ -1,0 +1,13 @@
+ :root {
+   --c-cssvar-ffffff: #ffffff;
+   --c-cssvar-f9f9fb: #f9f9fb;
+   --c-cssvar-333333: #333333;
+ }
+
+ @media (prefers-color-scheme: dark) {
+   :root {
+     --c-cssvar-ffffff: #040406;
+     --c-cssvar-f9f9fb: #0d0d10;
+     --c-cssvar-333333: #ffffff;
+   }
+ }
