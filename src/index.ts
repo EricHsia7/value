@@ -8,10 +8,13 @@ import './interface/editor/field.css';
 import './interface/editor/head.css';
 import './interface/editor/body.css';
 
-const value = {
+window.value = {
   initialize: function () {
     console.log('test');
+  },
+  secondlyInitialize: function () {
+    console.log('test2');
   }
 };
 
-export default value;
+export default window.value;

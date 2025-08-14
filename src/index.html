@@ -40,5 +40,17 @@
         <div class="css_editor_head_title">Editor</div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        value.initialize();
+      });
+      window.addEventListener('load', function () {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./service-worker.js');
+        }
+        value.secondlyInitialize();
+      });
+    </script>
   </body>
 </html>
