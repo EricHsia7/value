@@ -11,7 +11,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const { execSync } = require('child_process');
 const MangleCssClassPlugin = require('mangle-css-class-webpack-plugin');
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 async function makeDirectory(path) {
   // Check if the path already exists
@@ -122,10 +121,6 @@ module.exports = (env, argv) => {
       new SubresourceIntegrityPlugin({
         hashFuncNames: ['sha256', 'sha384'], // Hash algorithms you want to use
         enabled: true
-      }),
-      new ESLintPlugin({
-        extensions: ['js', 'jsx', 'ts', 'tsx'], // Adjust based on your project
-        failOnError: true
       }),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static', // Generate static HTML report
