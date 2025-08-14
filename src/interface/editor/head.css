@@ -1,5 +1,5 @@
 /* head */
-.css_editor_head {
+.css_editor_field .css_editor_head {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -8,7 +8,7 @@
 }
 
 /* head > title */
-.css_editor_head .css_editor_head_title {
+.css_editor_field .css_editor_head .css_editor_head_title {
   position: absolute;
   top: 0px;
   left: 55px;
@@ -22,7 +22,7 @@
 }
 
 /* head > button-left */
-.css_editor_head .css_editor_head_button_left {
+.css_editor_field .css_editor_head .css_editor_head_button_left {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -33,7 +33,7 @@
   align-items: center;
 }
 
-.css_editor_head .css_editor_head_button_left span.css_material_symbols_rounded {
+.css_editor_field .css_editor_head .css_editor_head_button_left span.css_material_symbols_rounded {
   width: 20px;
   height: 20px;
   color: var(--v-cssvar-333333);
