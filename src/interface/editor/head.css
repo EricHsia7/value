@@ -1,3 +1,4 @@
+/* head */
 .css_editor_head {
   position: fixed;
   top: 0px;
@@ -6,7 +7,8 @@
   height: 55px;
 }
 
-.css_editor_head_title {
+/* head > title */
+.css_editor_head .css_editor_head_title {
   position: absolute;
   top: 0px;
   left: 55px;
@@ -17,4 +19,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* head > button-left */
+.css_editor_head .css_editor_head_button_left {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.css_editor_head .css_editor_head_button_left span.css_material_symbols_rounded {
+  width: 20px;
+  height: 20px;
+  color: var(--v-cssvar-333333);
 }
