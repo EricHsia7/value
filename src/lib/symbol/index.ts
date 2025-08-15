@@ -7,6 +7,7 @@ export interface Symbol {
   name: string;
   description: string;
   variables: Array<Variable['id']>;
+  output: Variable['id'];
   id: string;
 }
 
@@ -25,21 +26,22 @@ export async function initializeSymbols() {
   }
 }
 
-export async function createSymbol(): Promise<Symbol['id']> {
-  const identifier = generateIdentifier();
+export async function createSymbol(name: Symbol['name'] = 'Unnamed Symbol'): Promise<Symbol['id']> {
+  const SymbolID = generateIdentifier();
   const object: Symbol = {
     type: 'symbol',
-    name: 'Unnamed Symbol',
+    name: name,
     description: '',
     variables: [],
-    id: identifier
+    output: '',
+    id: SymbolID
   };
 
-  Symbols[identifier] = object;
+  Symbols[SymbolID] = object;
 
-  await lfSetItem(0, identifier, JSON.stringify(object));
+  await lfSetItem(0, SymbolID, JSON.stringify(object));
 
-  return identifier;
+  return SymbolID;
 }
 
 export function hasSymbol(SymbolID: Symbol['id']): boolean {
@@ -62,6 +64,33 @@ export async function deleteSymbol(SymbolID: Symbol['id']): Promise<boolean> {
   } else {
     return false;
   }
+}
+
+export async function setSymbolName(SymbolID: Symbol['id'], name: Symbol['name']): Promise<boolean> {
+  if (!hasSymbol(SymbolID)) return false;
+  const thisSymbolObject = Symbols[SymbolID];
+  thisSymbolObject.name = name;
+  Symbols[SymbolID] = thisSymbolObject;
+  await lfSetItem(0, SymbolID, JSON.stringify(thisSymbolObject));
+  return true;
+}
+
+export async function setSymbolDescription(SymbolID: Symbol['id'], description: Symbol['description']): Promise<boolean> {
+  if (!hasSymbol(SymbolID)) return false;
+  const thisSymbolObject = Symbols[SymbolID];
+  thisSymbolObject.description = description;
+  Symbols[SymbolID] = thisSymbolObject;
+  await lfSetItem(0, SymbolID, JSON.stringify(thisSymbolObject));
+  return true;
+}
+
+export async function setSymbolOutput(SymbolID: Symbol['id'], output: Symbol['output']): Promise<boolean> {
+  if (!hasSymbol(SymbolID)) return false;
+  const thisSymbolObject = Symbols[SymbolID];
+  thisSymbolObject.output = output;
+  Symbols[SymbolID] = thisSymbolObject;
+  await lfSetItem(0, SymbolID, JSON.stringify(thisSymbolObject));
+  return true;
 }
 
 export async function addVariableToSymbol(SymbolID: Symbol['id'], VariableID: Variable['id']): Promise<number> {
