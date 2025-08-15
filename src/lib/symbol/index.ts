@@ -67,7 +67,7 @@ export async function deleteSymbol(SymbolID: Symbol['id']): Promise<boolean> {
 export async function addVariableToSymbol(SymbolID: Symbol['id'], VariableID: Variable['id']): Promise<number> {
   if (!hasSymbol(SymbolID)) return -1;
   if (!hasVariable(VariableID)) return -1;
-  const thisSymbolObject = getSymbol(SymbolID);
+  const thisSymbolObject = Symbols[SymbolID];
   const existingIndex = thisSymbolObject.variables.indexOf(VariableID);
   if (existingIndex === -1) {
     thisSymbolObject.variables.push(VariableID);
@@ -82,7 +82,7 @@ export async function addVariableToSymbol(SymbolID: Symbol['id'], VariableID: Va
 export async function removeVariableFromSymbol(SymbolID: Symbol['id'], VariableID: Variable['id']): Promise<boolean> {
   if (!hasSymbol(SymbolID)) return false;
   if (!hasVariable(VariableID)) return false;
-  const thisSymbolObject = getSymbol(SymbolID);
+  const thisSymbolObject = Symbols[SymbolID];
   const existingIndex = thisSymbolObject.variables.indexOf(VariableID);
   if (existingIndex === -1) {
     return false;
@@ -98,7 +98,7 @@ export async function removeVariableFromSymbol(SymbolID: Symbol['id'], VariableI
 export async function moveVariableInSymbol(SymbolID: Symbol['id'], VariableID: Variable['id'], offset: number): Promise<boolean> {
   if (!hasSymbol(SymbolID)) return false;
   if (!hasVariable(VariableID)) return false;
-  const thisSymbolObject = getSymbol(SymbolID);
+  const thisSymbolObject = Symbols[SymbolID];
   const existingIndex = thisSymbolObject.variables.indexOf(VariableID);
   if (existingIndex === -1) {
     return false;
@@ -110,4 +110,3 @@ export async function moveVariableInSymbol(SymbolID: Symbol['id'], VariableID: V
     return true;
   }
 }
-
