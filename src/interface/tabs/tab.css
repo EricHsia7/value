@@ -5,19 +5,34 @@
   left: 0px;
   display: inline-flex;
   min-width: 35px;
-  height: 35px;
+  height: 34px;
   background-color: var(--v-cssvar-ffffff);
   white-space: nowrap;
   word-break: keep-all;
   vertical-align: top;
   overflow: hidden;
+  box-sizing: content-box;
+  border-right-style: solid;
+  border-right-color: var(--v-cssvar-ffffff);
+  border-right-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  border-bottom-width: 1px;
+}
+
+.css_tabs .css_tab:last-child {
+  border-right: none;
+}
+
+.css_tabs .css_tab[open="true"] {
+  border-bottom-color: var(--v-cssvar-ffffff);
 }
 
 /* tab > icon */
 .css_tabs .css_tab .css_tab_icon {
   position: relative;
   width: 35px;
-  height: 35px;
+  height: 34px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -34,7 +49,7 @@
   position: relative;
   min-width: 35px;
   max-width: 70px;
-  height: 35px;
+  height: 34px;
   font-size: 17px;
   line-height: 35px;
   text-overflow: ellipsis;
@@ -49,7 +64,7 @@
 .css_tabs .css_tab .css_tab_close {
   position: relative;
   width: 35px;
-  height: 35px;
+  height: 34px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
