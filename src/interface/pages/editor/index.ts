@@ -16,5 +16,7 @@ export function closeEditorField(): void {
 }
 
 async function updateEditorField(SymbolID: Symbol['id']) {
-  const thisSymbolObject = getSymbol(SymbolID)
+  const thisSymbolObject = getSymbol(SymbolID);
+  if (thisSymbolObject !== undefined) {
+  }
 }

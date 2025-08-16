@@ -1,0 +1,24 @@
+/* tabs */
+.css_tabs {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 35px;
+  background-color: var(--v-cssvar-f9f9fb);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  white-space: nowrap;
+  word-break: keep-all;
+  vertical-align: top;
+  border-bottom-color: var(--v-cssvar-ededf2);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  box-sizing: border-box;
+}
+
+.css_tabs::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,59 @@
+/* tab */
+.css_tabs .css_tab {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  display: inline-flex;
+  min-width: 35px;
+  height: 35px;
+  background-color: var(--v-cssvar-ffffff);
+  white-space: nowrap;
+  word-break: keep-all;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+/* tab > icon */
+.css_tabs .css_tab .css_tab_icon {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.css_tabs .css_tab .css_tab_icon span.css_material_symbols_rounded {
+  width: 20px;
+  height: 20px;
+  color: var(--v-cssvar-333333);
+}
+
+/* tab > name */
+.css_tabs .css_tab .css_tab_name {
+  position: relative;
+  min-width: 35px;
+  max-width: 70px;
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 18px;
+  color: var(--v-cssvar-333333);
+  font-weight: 400;
+}
+
+/* tab > close */
+.css_tabs .css_tab .css_tab_close {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.css_tabs .css_tab .css_tab_close span.css_material_symbols_rounded {
+  width: 20px;
+  height: 20px;
+  color: var(--v-cssvar-333333);
+}
