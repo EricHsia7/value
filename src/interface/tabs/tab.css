@@ -35,9 +35,12 @@
   min-width: 35px;
   max-width: 70px;
   height: 35px;
-  display: inline-flex;
-  align-items: center;
-  font-size: 18px;
+  font-size: 17px;
+  line-height: 35px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: keep-all;
+  white-space: nowrap;
   color: var(--v-cssvar-333333);
   font-weight: 400;
 }
@@ -50,11 +53,10 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
 }
 
-.css_tabs .css_tab[closable="true"] .css_tab_close {
-  visibility: visible;
+.css_tabs .css_tab[closable="false"] .css_tab_close {
+  opacity: 0.5;
 }
 
 .css_tabs .css_tab .css_tab_close span.css_material_symbols_rounded {
