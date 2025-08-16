@@ -13,11 +13,8 @@
   overflow: hidden;
   box-sizing: content-box;
   border-right-style: solid;
-  border-right-color: var(--v-cssvar-ffffff);
+  border-right-color: var(--v-cssvar-ededf2);
   border-right-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: transparent;
-  border-bottom-width: 1px;
 }
 
 .css_tabs .css_tab:last-child {
@@ -25,7 +22,9 @@
 }
 
 .css_tabs .css_tab[open="true"] {
+  border-bottom-style: solid;
   border-bottom-color: var(--v-cssvar-ffffff);
+  border-bottom-width: 1px;
 }
 
 /* tab > icon */
