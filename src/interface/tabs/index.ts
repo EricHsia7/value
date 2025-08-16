@@ -131,7 +131,7 @@ export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['ico
 }
 
 export function initializeTabs(): void {
-  registerTab('home', 'Home', false, []);
-  registerTab('settings', 'Settings', false, []);
+  registerTab('home', 'Home', 'home', false, []);
+  registerTab('settings', 'Settings', 'settings', false, []);
   updateTabs();
 }
