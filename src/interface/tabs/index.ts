@@ -16,9 +16,7 @@ export interface Tab {
 
 const tabsElement = documentQuerySelector('.css_tabs');
 
-const Tabs: { [TabID: Tab['id']]: Tab } = {};
-const TabsIndex: Array<Tab['id']> = [];
-
+const Tabs: Array<Tab> = [];
 let previousTabs: Array<Tab> = [];
 
 function generateTabElement(): HTMLElement {
@@ -125,9 +123,7 @@ export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['ico
     parameters: parameters,
     id: TabID
   };
-
-  Tabs[TabID] = object;
-  TabsIndex.push(TabID);
+  Tabs.push(object);
 }
 
 export function initializeTabs(): void {
