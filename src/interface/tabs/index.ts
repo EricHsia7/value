@@ -16,7 +16,7 @@ export interface Tab {
 
 const tabsElement = documentQuerySelector('.css_tabs');
 
-const Tabs: Array<Tab> = [];
+const currentTabs: Array<Tab> = [];
 let previousTabs: Array<Tab> = [];
 
 function generateTabElement(): HTMLElement {
@@ -89,7 +89,7 @@ function updateTabs(): void {
   const tabElements = Array.from(elementQuerySelectorAll(tabsElement, '.css_tab'));
   const tabElementsLength = tabElements.length;
 
-  const TabsLength = Tabs.length;
+  const TabsLength = currentTabs.length;
   const fragment = new DocumentFragment();
   if (TabsLength >= tabElementsLength) {
     for (let i = tabElementsLength; i < TabsLength; i++) {
@@ -106,11 +106,12 @@ function updateTabs(): void {
 
   for (let k = 0; k < TabsLength; k++) {
     const previousTab = previousTabs[k];
-    const currentTab = Tabs[k];
+    const currentTab = currentTabs[k];
     const thisTabElement = tabElements[k];
     updateTab(thisTabElement, currentTab, previousTab);
-    previousTabs.splice(k, 1, currentTab);
   }
+
+  previousTabs = currentTabs
 }
 
 export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['icon'], closable: Tab['closable'], parameters: Tab['parameters']): void {
@@ -123,7 +124,7 @@ export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['ico
     parameters: parameters,
     id: TabID
   };
-  Tabs.push(object);
+  currentTabs.push(object);
 }
 
 export function initializeTabs(): void {
