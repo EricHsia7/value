@@ -10,6 +10,8 @@ export interface Tab {
   name: string;
   icon: MaterialSymbols;
   closable: boolean;
+  open: boolean;
+  index: number;
   parameters: Array<any>;
   id: string;
 }
@@ -60,6 +62,10 @@ function updateTabs(): void {
       }
     }
 
+    function updateOpen(thisTabElement: HTMLElement, currentTab: Tab) {
+      thisTabElement.setAttribute('open', booleanToString(currentTab.open));
+    }
+
     function updateOnclick(thisTabElement: HTMLElement, currentTab: Tab) {
       thisTabElement.onclick = function () {
         // TODO: switch pages
@@ -76,6 +82,9 @@ function updateTabs(): void {
       if (currentTab.closable !== previousTab.closable) {
         updateClosable(thisTabElement, currentTab);
       }
+      if (currentTab.open !== previousTab.open) {
+        updateOpen(thisTabElement, currentTab);
+      }
       if (currentTab.page !== previousTab.page) {
         updateOnclick(thisTabElement, currentTab);
       }
@@ -83,6 +92,7 @@ function updateTabs(): void {
       updateIcon(thisTabElement, currentTab);
       updateName(thisTabElement, currentTab);
       updateClosable(thisTabElement, currentTab);
+      updateOpen(thisTabElement, currentTab);
       updateOnclick(thisTabElement, currentTab);
     }
   }
@@ -111,7 +121,7 @@ function updateTabs(): void {
     updateTab(thisTabElement, currentTab, previousTab);
   }
 
-  previousTabs = currentTabs
+  previousTabs = currentTabs;
 }
 
 export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['icon'], closable: Tab['closable'], parameters: Tab['parameters']): void {
@@ -121,6 +131,8 @@ export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['ico
     name: name,
     icon: icon,
     closable: closable,
+    open: false,
+    index: currentTabs.length,
     parameters: parameters,
     id: TabID
   };
