@@ -50,6 +50,11 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.css_tabs .css_tab[closable="true"] .css_tab_close {
+  visibility: visible;
 }
 
 .css_tabs .css_tab .css_tab_close span.css_material_symbols_rounded {

@@ -33,7 +33,7 @@ function generateTabElement(): HTMLElement {
 
   const newCloseElement = document.createElement('div');
   newCloseElement.classList.add('css_tab_close');
-  newCloseElement.innerHTML = getIconHTML('close');
+  newCloseElement.innerHTML = getIconHTML('close_small');
   newTabElement.appendChild(newCloseElement);
 
   return newTabElement;
