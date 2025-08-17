@@ -4,7 +4,8 @@ import { generateIdentifier } from '../../lib/tools/generate-identifier';
 import { removeFromArray } from '../../lib/tools/remove-from-array';
 import { getIconHTML } from '../icons/index';
 import { MaterialSymbols } from '../icons/material-symbols-type';
-import { hidePage, Page, showPage } from '../pages/index';
+import { hidePage, Page, showPage, tabsBarMenuItems } from '../pages/index';
+import { updateMenuButton } from './menu';
 
 export interface Tab {
   page: Page;
@@ -185,6 +186,9 @@ export function openTab(TabID: Tab['id']): boolean {
 
     // update tabs
     updateTabs();
+
+    // update menu button
+    updateMenuButton(tabsBarMenuItems[nextTab.page]);
     return true;
   }
   return false;

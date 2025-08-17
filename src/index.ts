@@ -1,7 +1,7 @@
 import { initializeSymbols } from './lib/symbol/index';
 import { initializeVariables } from './lib/variable/index';
 import { checkAppVersion } from './lib/version/index';
-import { initializeTabs } from './interface/tabs-bar/index';
+import { initializeTabs } from './interface/tabs-bar/tabs';
 
 import './interface/theme.css';
 
