@@ -206,19 +206,25 @@ export function openTab(TabID: Tab['id']): boolean {
 }
 
 export function closeTab(TabID: Tab['id']): boolean {
-  if (tabHistory.length <= 1) return false;
+  const tabHistoryLength = tabHistory.length;
+  if (tabHistoryLength <= 1) return false;
+
   const thisTab = Tabs[TabID];
   if (!thisTab) return false;
   if (!thisTab?.closable) return false;
-  if (tabHistory.length > 0) {
-    const lastTabID = tabHistory.filter((e) => e !== TabID).pop();
-    if (lastTabID !== undefined) {
-      openTab(lastTabID);
+
+  for (let i = tabHistoryLength - 1; i >= 0; i--) {
+    if (tabHistory[i] !== TabID) {
+      openTab(tabHistory[i]);
+      break;
     }
   }
+
   delete Tabs[TabID];
   removeFromArray(tabHistory, TabID);
+
   updateTabs();
+
   return true;
 }
 
