@@ -16,10 +16,12 @@
   border-right-width: 1px;
 }
 
+/* open: false */
 .css_tabs .css_tab[open="false"] {
   background-color: var(--v-cssvar-f9f9fb);
 }
 
+/* open: true */
 .css_tabs .css_tab[open="true"] {
   background-color: var(--v-cssvar-ffffff);
   border-bottom-style: solid;
@@ -43,6 +45,18 @@
   color: var(--v-cssvar-333333);
 }
 
+/* open: false */
+.css_tabs .css_tab[open="false"] .css_tab_icon span.css_material_symbols_rounded {
+  --v-cssvar-font-variation-settings-fill: 0;
+  opacity: 0.5;
+}
+
+/* open: true */
+.css_tabs .css_tab[open="false"] .css_tab_icon span.css_material_symbols_rounded {
+  --v-cssvar-font-variation-settings-fill: 1;
+  opacity: 1;
+}
+
 /* tab > name */
 .css_tabs .css_tab .css_tab_name {
   position: relative;
@@ -59,6 +73,16 @@
   font-weight: 400;
 }
 
+/* open: false */
+.css_tabs .css_tab[open="false"] .css_tab_name {
+  opacity: 0.5;
+}
+
+/* open: true */
+.css_tabs .css_tab[open="true"] .css_tab_name {
+  opacity: 1;
+}
+
 /* tab > close */
 .css_tabs .css_tab .css_tab_close {
   position: relative;
@@ -69,12 +93,28 @@
   align-items: center;
 }
 
-.css_tabs .css_tab[closable="false"] .css_tab_close {
-  opacity: 0.3;
-}
-
 .css_tabs .css_tab .css_tab_close span.css_material_symbols_rounded {
   width: 20px;
   height: 20px;
   color: var(--v-cssvar-333333);
+}
+
+/* closable: false && open: false */
+.css_tabs .css_tab[closable="false"][open="false"] .css_tab_close span.css_material_symbols_rounded {
+  opacity: 0.15;
+}
+
+/* closable: false && open: true */
+.css_tabs .css_tab[closable="false"][open="true"] .css_tab_close span.css_material_symbols_rounded {
+  opacity: 0.3;
+}
+
+/* closable: true && open: false */
+.css_tabs .css_tab[closable="false"][open="false"] .css_tab_close span.css_material_symbols_rounded {
+  opacity: 0.5;
+}
+
+/* closable: true && open: true */
+.css_tabs .css_tab[closable="false"][open="true"] .css_tab_close span.css_material_symbols_rounded {
+  opacity: 1;
 }
