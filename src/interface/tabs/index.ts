@@ -75,19 +75,25 @@ function updateTabs(): void {
     }
 
     if (previousTab !== undefined) {
+      console.log(0);
       if (currentTab.icon !== previousTab.icon) {
+        console.log(1);
         updateIcon(thisTabElement, currentTab);
       }
       if (currentTab.name !== previousTab.name) {
+        console.log(2);
         updateName(thisTabElement, currentTab);
       }
       if (currentTab.closable !== previousTab.closable) {
+        console.log(3);
         updateClose(thisTabElement, currentTab);
       }
       if (currentTab.open !== previousTab.open || currentTab.id !== previousTab.id) {
+        console.log(4);
         updateOpen(thisTabElement, currentTab);
       }
     } else {
+      console.log(5);
       updateIcon(thisTabElement, currentTab);
       updateName(thisTabElement, currentTab);
       updateClose(thisTabElement, currentTab);
@@ -100,19 +106,25 @@ function updateTabs(): void {
   const TabsListLength = TabsList.length;
   const fragment = new DocumentFragment();
   if (TabsListLength >= tabElementsLength) {
+    console.log(6);
     for (let i = tabElementsLength; i < TabsListLength; i++) {
       const newTabElement = generateTabElement();
       fragment.appendChild(newTabElement);
       tabElements.push(newTabElement);
+      console.log(7);
     }
     tabsElement.append(fragment);
+    console.log(8);
   } else {
+    console.log(9);
     for (let j = tabElementsLength - 1; j >= TabsListLength; j--) {
+      console.log(10);
       tabElements[j].remove();
     }
   }
 
   for (let k = 0; k < TabsListLength; k++) {
+    console.log(11);
     const previousTab = previousTabsList[k];
     const currentTab = TabsList[k];
     const thisTabElement = tabElements[k];
@@ -151,25 +163,17 @@ export function listTabs(): Array<Tab> {
 }
 
 export function openTab(TabID: Tab['id']): boolean {
-  console.log(0, TabID);
   const nextTab = Tabs[TabID];
-  console.log(1, nextTab);
   if (nextTab) {
-    console.log(2);
     // hide the current
     const tabHistoryLength = tabHistory.length;
-    console.log(3, tabHistory, tabHistoryLength);
     if (tabHistoryLength > 0) {
-      console.log(4);
       const lastTabID = tabHistory[tabHistoryLength - 1];
       const currentTab = Tabs[lastTabID];
-      console.log(5, currentTab);
       if (currentTab && lastTabID !== TabID) {
-        console.log(6, JSON.stringify(Tabs, null, 2));
         currentTab.open = false;
         nextTab.open = true;
         tabHistory.push(TabID);
-        console.log(7, JSON.stringify(Tabs, null, 2));
       }
     } else {
       // show the next
