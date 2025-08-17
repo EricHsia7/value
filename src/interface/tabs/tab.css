@@ -17,7 +17,7 @@
 }
 
 .css_tabs .css_tab[open="false"] {
-  background-color: var(--v-cssvar-ededf2);
+  background-color: var(--v-cssvar-f9f9fb);
 }
 
 .css_tabs .css_tab[open="true"] {

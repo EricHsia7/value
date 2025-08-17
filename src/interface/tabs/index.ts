@@ -63,7 +63,9 @@ function updateTabs(): void {
             event.stopPropagation();
             closeTab(currentTab.id);
           }
-        : function () {};
+        : function (event) {
+            event.stopPropagation();
+          };
       thisTabElement.setAttribute('closable', booleanToString(currentTab.closable));
     }
 
