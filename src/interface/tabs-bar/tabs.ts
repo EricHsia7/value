@@ -11,6 +11,7 @@ export interface Tab {
   page: Page;
   name: string;
   icon: MaterialSymbols;
+  reusable: boolean;
   closable: boolean;
   open: boolean;
   parameters: Array<any>;
@@ -125,12 +126,13 @@ function updateTabs(): void {
   previousTabsList = TabsList;
 }
 
-export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['icon'], closable: Tab['closable'], parameters: Tab['parameters']): Tab['id'] {
+export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['icon'], reusable: Tab['reusable'], closable: Tab['closable'], parameters: Tab['parameters']): Tab['id'] {
   const TabID = generateIdentifier();
   const object: Tab = {
     page: page,
     name: name,
     icon: icon,
+    reusable: reusable,
     closable: closable,
     open: false,
     parameters: parameters,
@@ -150,6 +152,7 @@ export function listTabs(): Array<Tab> {
       page: thisTab.page,
       name: thisTab.name,
       icon: thisTab.icon,
+      reusable: thisTab.reusable,
       closable: thisTab.closable,
       open: thisTab.open,
       parameters: thisTab.parameters,
@@ -210,8 +213,9 @@ export function closeTab(TabID: Tab['id']): boolean {
 }
 
 export function initializeTabs(): void {
-  const homeTab = registerTab('home', 'Home', 'home', false, []);
-  const settingsTab = registerTab('settings', 'Settings', 'settings', false, []);
+  const homeTab = registerTab('home', 'Home', 'home', false, false, []);
+  const searchTab = registerTab('search', 'Search', 'search', false, true, []);
+  const settingsTab = registerTab('settings', 'Settings', 'settings', false, true, []);
   openTab(homeTab);
   updateTabs();
 }
