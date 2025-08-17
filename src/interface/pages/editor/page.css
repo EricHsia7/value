@@ -1,5 +1,5 @@
 /* field */
-.css_editor_field {
+.css_editor_page {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -10,6 +10,6 @@
   visibility: hidden;
 }
 
-.css_editor_field[displayed="true"] {
+.css_editor_page[displayed="true"] {
   visibility: visible;
 }

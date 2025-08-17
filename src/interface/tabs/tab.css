@@ -1,0 +1,120 @@
+/* tab */
+.css_tabs .css_tab {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  display: inline-flex;
+  min-width: 35px;
+  height: 34px;
+  white-space: nowrap;
+  word-break: keep-all;
+  vertical-align: top;
+  overflow: hidden;
+  box-sizing: content-box;
+  border-right-style: solid;
+  border-right-color: var(--v-cssvar-ededf2);
+  border-right-width: 1px;
+}
+
+/* open: false */
+.css_tabs .css_tab[open="false"] {
+  background-color: var(--v-cssvar-f9f9fb);
+}
+
+/* open: true */
+.css_tabs .css_tab[open="true"] {
+  background-color: var(--v-cssvar-ffffff);
+  border-bottom-style: solid;
+  border-bottom-color: var(--v-cssvar-ffffff);
+  border-bottom-width: 1px;
+}
+
+/* tab > icon */
+.css_tabs .css_tab .css_tab_icon {
+  position: relative;
+  width: 35px;
+  height: 34px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.css_tabs .css_tab .css_tab_icon span.css_material_symbols_rounded {
+  width: 20px;
+  height: 20px;
+  color: var(--v-cssvar-333333);
+}
+
+/* open: false */
+.css_tabs .css_tab[open="false"] .css_tab_icon span.css_material_symbols_rounded {
+  --v-cssvar-font-variation-settings-fill: 0;
+  opacity: 0.5;
+}
+
+/* open: true */
+.css_tabs .css_tab[open="true"] .css_tab_icon span.css_material_symbols_rounded {
+  --v-cssvar-font-variation-settings-fill: 1;
+  opacity: 1;
+}
+
+/* tab > name */
+.css_tabs .css_tab .css_tab_name {
+  position: relative;
+  min-width: 35px;
+  max-width: 70px;
+  height: 34px;
+  font-size: 17px;
+  line-height: 35px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: keep-all;
+  white-space: nowrap;
+  color: var(--v-cssvar-333333);
+  font-weight: 400;
+}
+
+/* open: false */
+.css_tabs .css_tab[open="false"] .css_tab_name {
+  opacity: 0.5;
+}
+
+/* open: true */
+.css_tabs .css_tab[open="true"] .css_tab_name {
+  opacity: 1;
+}
+
+/* tab > close */
+.css_tabs .css_tab .css_tab_close {
+  position: relative;
+  width: 35px;
+  height: 34px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.css_tabs .css_tab .css_tab_close span.css_material_symbols_rounded {
+  width: 20px;
+  height: 20px;
+  color: var(--v-cssvar-333333);
+}
+
+/* closable: false && open: false */
+.css_tabs .css_tab[closable="false"][open="false"] .css_tab_close span.css_material_symbols_rounded {
+  opacity: 0.15;
+}
+
+/* closable: false && open: true */
+.css_tabs .css_tab[closable="false"][open="true"] .css_tab_close span.css_material_symbols_rounded {
+  opacity: 0.3;
+}
+
+/* closable: true && open: false */
+.css_tabs .css_tab[closable="true"][open="false"] .css_tab_close span.css_material_symbols_rounded {
+  opacity: 0.5;
+}
+
+/* closable: true && open: true */
+.css_tabs .css_tab[closable="true"][open="true"] .css_tab_close span.css_material_symbols_rounded {
+  opacity: 1;
+}

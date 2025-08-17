@@ -1,6 +1,7 @@
 :root {
   --v-cssvar-ffffff: #ffffff;
   --v-cssvar-f9f9fb: #f9f9fb;
+  --v-cssvar-ededf2: #ededf2;
   --v-cssvar-333333: #333333;
 }
 
@@ -8,6 +9,7 @@
   :root {
     --v-cssvar-ffffff: #040406;
     --v-cssvar-f9f9fb: #0d0d10;
+    --v-cssvar-ededf2: #202026;
     --v-cssvar-333333: #ffffff;
   }
 }

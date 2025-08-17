@@ -1,4 +1,5 @@
 import { ModelComponent } from '../component/component';
+import { lfGetItem, lfListItemKeys, lfRemoveItem, lfSetItem } from '../storage/index';
 import { generateIdentifier } from '../tools/generate-identifier';
 
 export interface Variable {
