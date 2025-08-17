@@ -1,4 +1,4 @@
-import { elementQuerySelector } from '../../../../lib/selector/index';
+import { documentQuerySelector, elementQuerySelector } from '../../../../lib/selector/index';
 import { EvaluatedSymbol, listEvaluatedSymbols } from '../../../../lib/symbol/index';
 import { getIconHTML } from '../../../icons/index';
 
