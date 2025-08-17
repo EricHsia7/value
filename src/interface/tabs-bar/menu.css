@@ -16,12 +16,28 @@
   color: var(--v-cssvar-333333);
 }
 
+/* overlay */
+.css_tabs_bar_menu_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: calc(100% - 35px);
+  background-color: transparent;
+  visibility: hidden;
+  contain: layout;
+}
+
+.css_tabs_bar_menu_overlay[displayed="true"] {
+  visibility: visible;
+}
+
 /* menu */
 .css_tabs_bar_menu {
   position: fixed;
   top: calc(35px + 5px);
   right: calc(0px + 5px);
-  width: clamp(100px, 33%, 250px);
+  width: clamp(150px, 33%, 250px);
   min-height: 35px;
   display: inline-flex;
   background-color: var(--v-cssvar-ffffff);

@@ -12,6 +12,7 @@ export interface TabsBarMenuItem {
 export type TabsBarMenuItemArray = Array<TabsBarMenuItem>;
 
 const menuButtonElement = documentQuerySelector('.css_tabs_bar_menu_button');
+const menuOverlayElement = documentQuerySelector('.css_tabs_bar_menu_overlay');
 const menuElement = documentQuerySelector('.css_tabs_bar_menu');
 
 let previousMenuItems: TabsBarMenuItemArray = [];
@@ -88,9 +89,20 @@ export function updateTabsBarMenu(menuItems: TabsBarMenuItemArray): void {
     openTabsBarMenu();
   };
 
+  menuOverlayElement.onclick = function (event) {
+    event.stopPropagation();
+    closeTabsBarMenu();
+  };
+
   previousMenuItems = menuItems;
 }
 
 export function openTabsBarMenu(): void {
   menuElement.setAttribute('displayed', 'true');
+  menuOverlayElement.setAttribute('displayed', 'true');
+}
+
+export function closeTabsBarMenu(): void {
+  menuElement.setAttribute('displayed', 'false');
+  menuOverlayElement.setAttribute('displayed', 'false');
 }
