@@ -150,19 +150,15 @@ export function listTabs(): Array<Tab> {
   return result;
 }
 
-export function getTab(TabID: Tab['id']): Tab | undefined {
-  return currentTabs[TabID];
-}
-
 export function openTab(TabID: Tab['id']): boolean {
-  const nextTab = getTab(TabID);
-  if (nextTab !== undefined) {
+  const nextTab = currentTabs[TabID];
+  if (nextTab) {
     // hide the current
     const tabHistoryLength = tabHistory.length;
     if (tabHistoryLength > 0) {
       const lastTabID = tabHistory[tabHistoryLength - 1];
-      const currentTab = getTab(lastTabID);
-      if (currentTab !== undefined) {
+      const currentTab = currentTabs[TabID];
+      if (currentTab) {
         if (currentTab.id !== nextTab.id) {
           currentTab.open = false;
           nextTab.open = true;
@@ -186,14 +182,14 @@ export function openTab(TabID: Tab['id']): boolean {
 
 export function closeTab(TabID: Tab['id']): boolean {
   if (tabHistory.length <= 1) return false;
-  const thisTab = getTab(TabID);
-  if (thisTab === undefined) return false;
-  if (!thisTab.closable) return false;
+  const thisTab = currentTabs[TabID];
+  if (!thisTab) return false;
+  if (!thisTab?.closable) return false;
   removeFromArray(tabHistory, TabID);
   delete currentTabs[TabID];
   if (tabHistory.length > 0) {
     const lastTabID = tabHistory[tabHistory.length - 1];
-    const lastTab = getTab(lastTabID);
+    const lastTab = currentTabs[lastTabID];
     if (lastTab !== undefined) {
       lastTab.open = true;
     }
