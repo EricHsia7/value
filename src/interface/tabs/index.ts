@@ -156,7 +156,17 @@ export function listTabs(): Array<Tab> {
   const result: Array<Tab> = [];
   for (const key in Tabs) {
     const thisTab = Tabs[key];
-    result.push(thisTab);
+    // clone the object to prevent previousTabsList from referencing mutated properties before UI updates
+    result.push({
+      page: thisTab.page,
+      name: thisTab.name,
+      icon: thisTab.icon,
+      closable: thisTab.closable,
+      open: thisTab.open,
+      parameters: thisTab.parameters,
+      time: thisTab.time,
+      id: thisTab.id
+    });
   }
   result.sort(function (a, b) {
     return a.time - b.time;
