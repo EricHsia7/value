@@ -85,7 +85,7 @@ function updateTabs(): void {
       if (currentTab.name !== previousTab.name) {
         updateName(thisTabElement, currentTab);
       }
-      if (currentTab.closable !== previousTab.closable) {
+      if (currentTab.closable !== previousTab.closable || currentTab.id !== previousTab.id) {
         updateClose(thisTabElement, currentTab);
       }
       if (currentTab.open !== previousTab.open || currentTab.id !== previousTab.id) {
