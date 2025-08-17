@@ -52,7 +52,7 @@
 }
 
 /* open: true */
-.css_tabs .css_tab[open="false"] .css_tab_icon span.css_material_symbols_rounded {
+.css_tabs .css_tab[open="true"] .css_tab_icon span.css_material_symbols_rounded {
   --v-cssvar-font-variation-settings-fill: 1;
   opacity: 1;
 }
@@ -110,11 +110,11 @@
 }
 
 /* closable: true && open: false */
-.css_tabs .css_tab[closable="false"][open="false"] .css_tab_close span.css_material_symbols_rounded {
+.css_tabs .css_tab[closable="true"][open="false"] .css_tab_close span.css_material_symbols_rounded {
   opacity: 0.5;
 }
 
 /* closable: true && open: true */
-.css_tabs .css_tab[closable="false"][open="true"] .css_tab_close span.css_material_symbols_rounded {
+.css_tabs .css_tab[closable="true"][open="true"] .css_tab_close span.css_material_symbols_rounded {
   opacity: 1;
 }
