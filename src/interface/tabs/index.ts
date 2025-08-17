@@ -4,7 +4,7 @@ import { generateIdentifier } from '../../lib/tools/generate-identifier';
 import { removeFromArray } from '../../lib/tools/remove-from-array';
 import { getIconHTML } from '../icons/index';
 import { MaterialSymbols } from '../icons/material-symbols-type';
-import { Page } from '../pages/index';
+import { Page, showPage } from '../pages/index';
 
 export interface Tab {
   page: Page;
@@ -174,11 +174,13 @@ export function openTab(TabID: Tab['id']): boolean {
         currentTab.open = false;
         nextTab.open = true;
         tabHistory.push(TabID);
+        showPage[nextTab.page](...nextTab.parameters);
       }
     } else {
       // show the next
       nextTab.open = true;
       tabHistory.push(TabID);
+      showPage[nextTab.page](...nextTab.parameters);
     }
 
     // update tabs
@@ -197,10 +199,7 @@ export function closeTab(TabID: Tab['id']): boolean {
   delete Tabs[TabID];
   if (tabHistory.length > 0) {
     const lastTabID = tabHistory[tabHistory.length - 1];
-    const lastTab = Tabs[lastTabID];
-    if (lastTab !== undefined) {
-      lastTab.open = true;
-    }
+    openTab(lastTabID);
   }
   updateTabs();
   return true;
