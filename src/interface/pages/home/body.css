@@ -1,0 +1,8 @@
+/* home > body */
+.css_home_page .css_home_page_body {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  display: inline-block;
+}

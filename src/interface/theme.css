@@ -3,6 +3,7 @@
   --v-cssvar-f9f9fb: #f9f9fb;
   --v-cssvar-ededf2: #ededf2;
   --v-cssvar-333333: #333333;
+  --v-cssvar-border-radius: 10px;
 }
 
 @media(prefers-color-scheme:dark) {
