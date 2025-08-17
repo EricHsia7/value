@@ -169,10 +169,10 @@ export function openTab(TabID: Tab['id']): boolean {
     if (tabHistoryLength > 0) {
       const lastTabID = tabHistory[tabHistoryLength - 1];
       const currentTab = Tabs[lastTabID];
-      if (currentTab && lastTabID !== TabID) {
+      if (currentTab) {
         currentTab.open = false;
         nextTab.open = true;
-        tabHistory.push(TabID);
+        if (lastTabID !== TabID) tabHistory.push(TabID);
         hidePage[currentTab.page]();
         showPage[nextTab.page](...nextTab.parameters);
       }
@@ -195,8 +195,8 @@ export function closeTab(TabID: Tab['id']): boolean {
   const thisTab = Tabs[TabID];
   if (!thisTab) return false;
   if (!thisTab?.closable) return false;
-  removeFromArray(tabHistory, TabID);
   delete Tabs[TabID];
+  removeFromArray(tabHistory, TabID);
   if (tabHistory.length > 0) {
     const lastTabID = tabHistory[tabHistory.length - 1];
     openTab(lastTabID);
