@@ -1,4 +1,4 @@
-import { documentQuerySelector } from '../../lib/selector/index';
+import { documentQuerySelector, elementQuerySelector, elementQuerySelectorAll } from '../../lib/selector/index';
 import { getIconHTML } from '../icons/index';
 import { MaterialSymbols } from '../icons/material-symbols-type';
 
