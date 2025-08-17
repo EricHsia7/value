@@ -64,7 +64,6 @@ function updateTabs(): void {
       const closeElement = elementQuerySelector(thisTabElement, '.css_tab_close');
       closeElement.onclick = currentTab.closable
         ? function (event) {
-            event.preventDefault();
             event.stopPropagation();
             closeTab(currentTab.id);
           }
