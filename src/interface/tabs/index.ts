@@ -75,25 +75,19 @@ function updateTabs(): void {
     }
 
     if (previousTab !== undefined) {
-      console.log(0);
       if (currentTab.icon !== previousTab.icon) {
-        console.log(1);
         updateIcon(thisTabElement, currentTab);
       }
       if (currentTab.name !== previousTab.name) {
-        console.log(2);
         updateName(thisTabElement, currentTab);
       }
       if (currentTab.closable !== previousTab.closable) {
-        console.log(3);
         updateClose(thisTabElement, currentTab);
       }
       if (currentTab.open !== previousTab.open || currentTab.id !== previousTab.id) {
-        console.log(4);
         updateOpen(thisTabElement, currentTab);
       }
     } else {
-      console.log(5);
       updateIcon(thisTabElement, currentTab);
       updateName(thisTabElement, currentTab);
       updateClose(thisTabElement, currentTab);
@@ -105,28 +99,20 @@ function updateTabs(): void {
   const TabsList = listTabs();
   const TabsListLength = TabsList.length;
   if (TabsListLength >= tabElementsLength) {
-    console.log(6);
     const fragment = new DocumentFragment();
     for (let i = tabElementsLength; i < TabsListLength; i++) {
       const newTabElement = generateTabElement();
       fragment.appendChild(newTabElement);
       tabElements.push(newTabElement);
-      console.log(7);
     }
     tabsElement.append(fragment);
-    console.log(8);
   } else {
-    console.log(9);
     for (let j = tabElementsLength - 1; j >= TabsListLength; j--) {
-      console.log(10);
       tabElements[j].remove();
     }
   }
 
-  console.log(JSON.stringify(Tabs), JSON.stringify(TabsList), JSON.stringify(previousTabsList));
-
   for (let k = 0; k < TabsListLength; k++) {
-    console.log(11);
     const previousTab = previousTabsList[k];
     const currentTab = TabsList[k];
     const thisTabElement = tabElements[k];

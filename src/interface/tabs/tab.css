@@ -6,7 +6,6 @@
   display: inline-flex;
   min-width: 35px;
   height: 34px;
-  background-color: var(--v-cssvar-ffffff);
   white-space: nowrap;
   word-break: keep-all;
   vertical-align: top;
@@ -17,7 +16,12 @@
   border-right-width: 1px;
 }
 
+.css_tabs .css_tab[open="false"] {
+  background-color: var(--v-cssvar-ededf2);
+}
+
 .css_tabs .css_tab[open="true"] {
+  background-color: var(--v-cssvar-ffffff);
   border-bottom-style: solid;
   border-bottom-color: var(--v-cssvar-ffffff);
   border-bottom-width: 1px;
