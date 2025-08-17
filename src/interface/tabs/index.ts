@@ -104,9 +104,9 @@ function updateTabs(): void {
   const tabElementsLength = tabElements.length;
   const TabsList = listTabs();
   const TabsListLength = TabsList.length;
-  const fragment = new DocumentFragment();
   if (TabsListLength >= tabElementsLength) {
     console.log(6);
+    const fragment = new DocumentFragment();
     for (let i = tabElementsLength; i < TabsListLength; i++) {
       const newTabElement = generateTabElement();
       fragment.appendChild(newTabElement);
@@ -122,6 +122,8 @@ function updateTabs(): void {
       tabElements[j].remove();
     }
   }
+
+  console.log(JSON.stringify(Tabs), JSON.stringify(TabsList), JSON.stringify(previousTabsList));
 
   for (let k = 0; k < TabsListLength; k++) {
     console.log(11);
@@ -151,7 +153,7 @@ export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['ico
 }
 
 export function listTabs(): Array<Tab> {
-  let result: Array<Tab> = [];
+  const result: Array<Tab> = [];
   for (const key in Tabs) {
     const thisTab = Tabs[key];
     result.push(thisTab);
