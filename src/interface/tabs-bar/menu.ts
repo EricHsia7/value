@@ -28,7 +28,7 @@ function generateMenuItemElement(): HTMLElement {
   newNameElement.classList.add('css_tabs_bar_menu_item_name');
   newMenuItemElement.appendChild(newNameElement);
 
-  return newNameElement;
+  return newMenuItemElement;
 }
 
 export function updateTabsBarMenu(menuItems: TabsBarMenuItemArray): void {
