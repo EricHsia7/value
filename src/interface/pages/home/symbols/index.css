@@ -1,3 +1,10 @@
+/* home > body > symbols */
+.css_home_page .css_home_page_body .css_home_page_symbols {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
 /* home > body > symbols > symbol */
 .css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol {
   position: relative;
@@ -6,7 +13,7 @@
   border-radius: var(--v-cssvar-border-radius);
   background-color: var(--v-cssvar-ffffff);
   border-style: solid;
-  border-color: var(--v-cssvar-f9f9fb);
+  border-color: var(--v-cssvar-ededf2);
   border-width: 1px;
   box-sizing: border-box;
 }

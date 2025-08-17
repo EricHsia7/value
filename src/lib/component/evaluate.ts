@@ -1,6 +1,7 @@
+import { Variable } from '../variable/index';
 import { Component, NumberComponent, StringComponent, stringifyComponent } from './component';
 
-export function evaluate(component: Component): Component | undefined {
+export function evaluateComponent(component: Component, variableMap: { [VariableName: Variable['name']]: Component } = {}): Component | undefined {
   if (component.type === 'string') {
     return component;
   } else if (component.type === 'number') {
@@ -94,7 +95,7 @@ export function evaluate(component: Component): Component | undefined {
   } else if (component.type === 'model') {
     for (let i = component.components.length - 1; i >= 0; i--) {
       const subComponent = component.components[i];
-      const evaluated = evaluate(subComponent);
+      const evaluated = evaluateComponent(subComponent, variableMap);
       if (evaluated !== undefined) {
         component.components.splice(i, 1, evaluated);
       } else {
@@ -316,7 +317,11 @@ export function evaluate(component: Component): Component | undefined {
       }
 
       case 'var': {
-        // TODO: resolve variables
+        const [name] = component.components;
+        if (name === undefined) return undefined;
+        if (name.type !== 'string') return undefined;
+        if (!variableMap.hasOwnProperty(name)) return undefined;
+        return variableMap[name];
         break;
       }
 

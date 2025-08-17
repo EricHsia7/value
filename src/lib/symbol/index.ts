@@ -1,6 +1,8 @@
+import { Component, stringifyComponent } from '../component/component';
+import { evaluateComponent } from '../component/evaluate';
 import { lfGetItem, lfListItemKeys, lfRemoveItem, lfSetItem } from '../storage/index';
 import { generateIdentifier } from '../tools/generate-identifier';
-import { deleteVariable, hasVariable, Variable } from '../variable/index';
+import { deleteVariable, getVariable, hasVariable, Variable } from '../variable/index';
 
 export interface Symbol {
   type: 'symbol';
@@ -8,6 +10,14 @@ export interface Symbol {
   description: string;
   variables: Array<Variable['id']>;
   output: Variable['id'];
+  id: string;
+}
+
+export interface EvaluatedSymbol {
+  type: 'evaluated-symbol';
+  name: string;
+  description: string;
+  value: string;
   id: string;
 }
 
@@ -138,4 +148,67 @@ export async function moveVariableInSymbol(SymbolID: Symbol['id'], VariableID: V
     await lfSetItem(0, SymbolID, JSON.stringify(thisSymbolObject));
     return true;
   }
+}
+
+export async function evaluateSymbol(thisSymbol: Symbol): EvaluatedSymbol {
+  const fallback: EvaluatedSymbol = {
+    type: 'evaluated-symbol',
+    name: thisSymbol.name,
+    description: thisSymbol.description,
+    value: 'undefined',
+    id: thisSymbol.id
+  };
+
+  const outputVariableID = thisSymbol.output;
+  const outputVariable = getVariable(outputVariableID);
+  if (outputVariable === undefined) return fallback;
+
+  const evaluatedVariables: { [VariableName: Variable['name']]: Component } = {};
+  const variableIDs = thisSymbol.variables;
+  for (const variableID of variableIDs) {
+    const thisVariable = getVariable(variableID);
+    if (thisVariable === undefined) continue;
+    if (thisVariable?.template === undefined) continue;
+    const evaluatedVariableValue = evaluateComponent(thisVariable.template, evaluatedVariables);
+    if (evaluatedVariableValue === undefined) continue;
+    evaluatedVariables[thisVariable.name] = evaluatedVariableValue;
+  }
+
+  if (!evaluatedVariables.hasOwnProperty(outputVariable.name)) return fallback;
+
+  return {
+    type: 'evaluated-symbol',
+    name: thisSymbol.name,
+    description: thisSymbol.description,
+    value: stringifyComponent(evaluatedVariables[outputVariable.name]),
+    id: thisSymbol.id
+  };
+}
+
+export function listSymbols(): Array<Symbol> {
+  const result: Array<Symbol> = [];
+
+  for (const key in Symbols) {
+    const thisSymbol = Symbols[key];
+    result.push({
+      type: 'symbol',
+      name: thisSymbol.name,
+      description: thisSymbol.description,
+      variables: thisSymbol.variables,
+      output: thisSymbol.output,
+      id: thisSymbol.id
+    });
+  }
+
+  return result;
+}
+
+export function listEvaluatedSymbols(): Array<EvaluatedSymbol> {
+  const result: Array<EvaluatedSymbol> = [];
+  for (const key in Symbols) {
+    const thisSymbol = Symbols[key];
+    result.push(evaluateSymbol(thisSymbol));
+  }
+
+  return result;
 }

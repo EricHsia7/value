@@ -1,11 +1,15 @@
-import { documentQuerySelector } from '../../../lib/selector/index';
+import { documentQuerySelector, elementQuerySelector } from '../../../lib/selector/index';
 
-const homePage = documentQuerySelector('.css_home_page');
+export const HomePage = documentQuerySelector('.css_home_page');
+export const HomePageBodyElement = elementQuerySelector(HomePage, '.css_home_page_body');
+
+function updateHomePage(): void {}
 
 export function showHomePage(): void {
-  homePage.setAttribute('displayed', 'true');
+  HomePage.setAttribute('displayed', 'true');
+  updateHomePage();
 }
 
 export function hideHomePage(): void {
-  homePage.setAttribute('displayed', 'false');
+  HomePage.setAttribute('displayed', 'false');
 }

@@ -44,7 +44,7 @@ export function hasVariable(VariableID: Variable['id']): boolean {
   return Variables.hasOwnProperty(VariableID);
 }
 
-export function getVariable(VariableID: Variable['id']): Symbol | undefined {
+export function getVariable(VariableID: Variable['id']): Variable | undefined {
   if (hasVariable(VariableID)) {
     return Variables[VariableID];
   } else {
