@@ -222,9 +222,6 @@ export function closeTab(TabID: Tab['id']): boolean {
 }
 
 export function initializeTabs(): void {
-  const homeTab = registerTab('home', 'Home', 'home', false, false, []);
-  const searchTab = registerTab('search', 'Search', 'search', false, true, []);
-  const settingsTab = registerTab('settings', 'Settings', 'settings', false, true, []);
-  openTab(homeTab);
-  updateTabs();
+  const homeTabID = registerTab('home', 'Home', 'home', false, false, []);
+  openTab(homeTabID);
 }
