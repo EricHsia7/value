@@ -1,4 +1,4 @@
-.css_editor_page {
+.css_settings_page {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -9,6 +9,6 @@
   visibility: hidden;
 }
 
-.css_editor_page[displayed="true"] {
+.css_settings_page[displayed="true"] {
   visibility: visible;
 }

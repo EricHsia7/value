@@ -14,6 +14,12 @@ import './interface/tabs-bar/tabs.css';
 import './interface/tabs-bar/tab.css';
 import './interface/tabs-bar/menu.css';
 
+import './interface/pages/home/page.css';
+
+import './interface/pages/settings/page.css';
+
+import './interface/pages/editor/page.css';
+
 window.value = {
   initialize: async function () {
     const status = await checkAppVersion();
