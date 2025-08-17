@@ -23,6 +23,7 @@ export const hidePage: { [page: Page]: Function } = {
 export const tabsBarMenuItems: { [page: Page]: TabsBarMenuItemArray } = {
   home: [
     {
+      key: 'home--new-symbol',
       name: 'New Symbol',
       icon: 'add',
       action: function () {

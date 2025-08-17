@@ -5,7 +5,7 @@ import { removeFromArray } from '../../lib/tools/remove-from-array';
 import { getIconHTML } from '../icons/index';
 import { MaterialSymbols } from '../icons/material-symbols-type';
 import { hidePage, Page, showPage, tabsBarMenuItems } from '../pages/index';
-import { updateMenuButton } from './menu';
+import { updateTabsBarMenu } from './menu';
 
 export interface Tab {
   page: Page;
@@ -188,7 +188,7 @@ export function openTab(TabID: Tab['id']): boolean {
     updateTabs();
 
     // update menu button
-    updateMenuButton(tabsBarMenuItems[nextTab.page]);
+    updateTabsBarMenu(tabsBarMenuItems[nextTab.page]);
     return true;
   }
   return false;
