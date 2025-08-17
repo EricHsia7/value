@@ -1,6 +1,7 @@
 import { documentQuerySelector, elementQuerySelector, elementQuerySelectorAll } from '../../lib/selector/index';
 import { booleanToString } from '../../lib/tools/boolean-to-string';
 import { generateIdentifier } from '../../lib/tools/generate-identifier';
+import { removeFromArray } from '../../lib/tools/remove-from-array';
 import { getIconHTML } from '../icons/index';
 import { MaterialSymbols } from '../icons/material-symbols-type';
 import { Page } from '../pages/index';
@@ -11,15 +12,17 @@ export interface Tab {
   icon: MaterialSymbols;
   closable: boolean;
   open: boolean;
-  index: number;
   parameters: Array<any>;
+  time: number;
   id: string;
 }
 
 const tabsElement = documentQuerySelector('.css_tabs');
 
-const currentTabs: Array<Tab> = [];
-let previousTabs: Array<Tab> = [];
+const currentTabs: { [TabID: Tab['id']]: Tab } = {};
+
+let previousTabsList: Array<Tab> = [];
+let tabHistory: Array<Tab['id']> = [];
 
 function generateTabElement(): HTMLElement {
   const newTabElement = document.createElement('div');
@@ -43,6 +46,10 @@ function generateTabElement(): HTMLElement {
 
 function updateTabs(): void {
   function updateTab(thisTabElement: HTMLElement, currentTab: Tab, previousTab: Tab | undefined): void {
+    function updateTabID(thisTabElement: HTMLElement, currentTab: Tab) {
+      thisTabElement.setAttribute('tab-id', currentTab.id);
+    }
+
     function updateIcon(thisTabElement: HTMLElement, currentTab: Tab) {
       const iconElement = elementQuerySelector(thisTabElement, '.css_tab_icon');
       iconElement.innerHTML = getIconHTML(currentTab.icon);
@@ -73,6 +80,9 @@ function updateTabs(): void {
     }
 
     if (previousTab !== undefined) {
+      if (currentTab.id !== previousTab.id) {
+        updateTabID(thisTabElement, currentTab);
+      }
       if (currentTab.icon !== previousTab.icon) {
         updateIcon(thisTabElement, currentTab);
       }
@@ -89,6 +99,7 @@ function updateTabs(): void {
         updateOnclick(thisTabElement, currentTab);
       }
     } else {
+      updateTabID(thisTabElement, currentTab);
       updateIcon(thisTabElement, currentTab);
       updateName(thisTabElement, currentTab);
       updateClosable(thisTabElement, currentTab);
@@ -98,33 +109,33 @@ function updateTabs(): void {
   }
   const tabElements = Array.from(elementQuerySelectorAll(tabsElement, '.css_tab'));
   const tabElementsLength = tabElements.length;
-
-  const TabsLength = currentTabs.length;
+  const TabsList = listTabs();
+  const TabsListLength = TabsList.length;
   const fragment = new DocumentFragment();
-  if (TabsLength >= tabElementsLength) {
-    for (let i = tabElementsLength; i < TabsLength; i++) {
+  if (TabsListLength >= tabElementsLength) {
+    for (let i = tabElementsLength; i < TabsListLength; i++) {
       const newTabElement = generateTabElement();
       fragment.appendChild(newTabElement);
       tabElements.push(newTabElement);
     }
     tabsElement.append(fragment);
   } else {
-    for (let j = tabElementsLength - 1; j >= TabsLength; j--) {
+    for (let j = tabElementsLength - 1; j >= TabsListLength; j--) {
       tabElements[j].remove();
     }
   }
 
-  for (let k = 0; k < TabsLength; k++) {
-    const previousTab = previousTabs[k];
-    const currentTab = currentTabs[k];
+  for (let k = 0; k < TabsListLength; k++) {
+    const previousTab = previousTabsList[k];
+    const currentTab = TabsList[k];
     const thisTabElement = tabElements[k];
     updateTab(thisTabElement, currentTab, previousTab);
   }
 
-  previousTabs = currentTabs;
+  previousTabsList = TabsList;
 }
 
-export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['icon'], closable: Tab['closable'], parameters: Tab['parameters']): void {
+export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['icon'], closable: Tab['closable'], parameters: Tab['parameters']): Tab['id'] {
   const TabID = generateIdentifier();
   const object: Tab = {
     page: page,
@@ -132,11 +143,74 @@ export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['ico
     icon: icon,
     closable: closable,
     open: false,
-    index: currentTabs.length,
     parameters: parameters,
+    time: new Date().getTime(),
     id: TabID
   };
-  currentTabs.push(object);
+  currentTabs[TabID] = object;
+  return TabID;
+}
+
+export function listTabs(): Array<Tab> {
+  let result: Array<Tab> = [];
+  for (const key in currentTabs) {
+    const thisTab = currentTabs[key];
+    result.push(thisTab);
+  }
+  result.sort(function (a, b) {
+    return a.time - b.time;
+  });
+  return result;
+}
+
+export function getTab(TabID: Tab['id']): Tab | undefined {
+  return currentTabs[TabID];
+}
+
+export function openTab(TabID: Tab['id']): boolean {
+  const nextTab = getTab(TabID);
+  if (nextTab !== undefined) {
+    // hide the current
+    const tabHistoryLength = tabHistory.length;
+    if (tabHistoryLength > 0) {
+      const lastTabID = tabHistory[tabHistoryLength - 1];
+      const currentTab = getTab(lastTabID);
+      if (currentTab !== undefined) {
+        if (currentTab.id !== nextTab.id) {
+          currentTab.open = false;
+          nextTab.open = true;
+          if (lastTabID !== TabID) {
+            tabHistory.push(TabID);
+          }
+        }
+      }
+    } else {
+      // show the next
+      nextTab.open = true;
+      tabHistory.push(TabID);
+    }
+
+    // update tabs
+    updateTabs();
+  }
+}
+
+export function closeTab(TabID: Tab['id']): boolean {
+  if (tabHistory.length <= 1) return false;
+  const thisTab = getTab(TabID);
+  if (thisTab === undefined) return false;
+  if (!thisTab.closable) return false;
+  removeFromArray(tabHistory, TabID);
+  delete currentTabs[TabID];
+  if (tabHistory.length > 0) {
+    const lastTabID = tabHistory[tabHistory.length - 1];
+    const lastTab = getTab(lastTabID);
+    if (lastTab !== undefined) {
+      lastTab.open = true;
+    }
+  }
+  updateTabs();
+  return true;
 }
 
 export function initializeTabs(): void {
