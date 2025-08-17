@@ -60,15 +60,14 @@ function updateTabs(): void {
       nameElement.innerText = currentTab.name;
     }
 
-    function updateClosable(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateClose(thisTabElement: HTMLElement, currentTab: Tab) {
+      const closeElement = elementQuerySelector(thisTabElement, '.css_tab_close');
+      closeElement.onclick = currentTab.closable
+        ? function () {
+            closeTab(currentTab.id);
+          }
+        : function () {};
       thisTabElement.setAttribute('closable', booleanToString(currentTab.closable));
-      if (currentTab.closable) {
-        thisTabElement.onclick = function () {
-          closeTab(currentTab.id);
-        };
-      } else {
-        thisTabElement.onclick = function () {};
-      }
     }
 
     function updateOpen(thisTabElement: HTMLElement, currentTab: Tab) {
@@ -92,7 +91,7 @@ function updateTabs(): void {
         updateName(thisTabElement, currentTab);
       }
       if (currentTab.closable !== previousTab.closable) {
-        updateClosable(thisTabElement, currentTab);
+        updateClose(thisTabElement, currentTab);
       }
       if (currentTab.open !== previousTab.open) {
         updateOpen(thisTabElement, currentTab);
@@ -104,7 +103,7 @@ function updateTabs(): void {
       updateTabID(thisTabElement, currentTab);
       updateIcon(thisTabElement, currentTab);
       updateName(thisTabElement, currentTab);
-      updateClosable(thisTabElement, currentTab);
+      updateClose(thisTabElement, currentTab);
       updateOpen(thisTabElement, currentTab);
       updateOnclick(thisTabElement, currentTab);
     }

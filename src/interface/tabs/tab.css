@@ -17,10 +17,6 @@
   border-right-width: 1px;
 }
 
-.css_tabs .css_tab:last-child {
-  border-right: none;
-}
-
 .css_tabs .css_tab[open="true"] {
   border-bottom-style: solid;
   border-bottom-color: var(--v-cssvar-ffffff);
