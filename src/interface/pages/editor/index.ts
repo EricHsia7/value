@@ -1,5 +1,5 @@
 import { documentQuerySelector, elementQuerySelector } from '../../../lib/selector/index';
-import { getSymbol, Symbol } from '../../lib/symbol/index';
+import { getSymbol, Symbol } from '../../../lib/symbol/index';
 
 const editorPage = documentQuerySelector('.css_editor_page');
 const editorHeadElement = elementQuerySelector(editorPage, '.css_editor_head');
