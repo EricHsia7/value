@@ -1,4 +1,5 @@
 import { TabsBarMenuItemArray } from '../tabs-bar/menu';
+import { openTab, registerTab } from '../tabs-bar/tabs';
 import { hideEditorPage, showEditorPage } from './editor/index';
 import { hideHomePage, showHomePage } from './home/index';
 import { hideSearchPage, showSearchPage } from './search/index';
@@ -32,6 +33,24 @@ export const tabsBarMenuItems: { [page: Page]: TabsBarMenuItemArray } = {
       icon: 'add',
       action: function () {
         console.log('new symbol');
+      }
+    },
+    {
+      key: 'home--search',
+      name: 'Search',
+      icon: 'search',
+      action: function () {
+        const TabID = registerTab('search', 'Search', 'search', false, true, []);
+        openTab(TabID);
+      }
+    },
+    {
+      key: 'home--settings',
+      name: 'Settings',
+      icon: 'settings',
+      action: function () {
+        const TabID = registerTab('settings', 'Settings', 'settings', false, true, []);
+        openTab(TabID);
       }
     }
   ],

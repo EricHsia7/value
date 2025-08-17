@@ -127,6 +127,15 @@ function updateTabs(): void {
 }
 
 export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['icon'], reusable: Tab['reusable'], closable: Tab['closable'], parameters: Tab['parameters']): Tab['id'] {
+  if (!reusable) {
+    for (const key in Tabs) {
+      const thisTab = Tabs[key];
+      if (thisTab.page === page) {
+        return key;
+      }
+    }
+  }
+
   const TabID = generateIdentifier();
   const object: Tab = {
     page: page,
