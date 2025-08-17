@@ -19,7 +19,7 @@ export interface Tab {
 
 const tabsElement = documentQuerySelector('.css_tabs');
 
-const currentTabs: { [TabID: Tab['id']]: Tab } = {};
+const Tabs: { [TabID: Tab['id']]: Tab } = {};
 
 let previousTabsList: Array<Tab> = [];
 let tabHistory: Array<Tab['id']> = [];
@@ -134,14 +134,14 @@ export function registerTab(page: Tab['page'], name: Tab['name'], icon: Tab['ico
     time: new Date().getTime(),
     id: TabID
   };
-  currentTabs[TabID] = object;
+  Tabs[TabID] = object;
   return TabID;
 }
 
 export function listTabs(): Array<Tab> {
   let result: Array<Tab> = [];
-  for (const key in currentTabs) {
-    const thisTab = currentTabs[key];
+  for (const key in Tabs) {
+    const thisTab = Tabs[key];
     result.push(thisTab);
   }
   result.sort(function (a, b) {
@@ -151,13 +151,13 @@ export function listTabs(): Array<Tab> {
 }
 
 export function openTab(TabID: Tab['id']): boolean {
-  const nextTab = currentTabs[TabID];
+  const nextTab = Tabs[TabID];
   if (nextTab) {
     // hide the current
     const tabHistoryLength = tabHistory.length;
     if (tabHistoryLength > 0) {
       const lastTabID = tabHistory[tabHistoryLength - 1];
-      const currentTab = currentTabs[TabID];
+      const currentTab = Tabs[lastTabID];
       if (currentTab) {
         if (currentTab.id !== nextTab.id) {
           currentTab.open = false;
@@ -182,14 +182,14 @@ export function openTab(TabID: Tab['id']): boolean {
 
 export function closeTab(TabID: Tab['id']): boolean {
   if (tabHistory.length <= 1) return false;
-  const thisTab = currentTabs[TabID];
+  const thisTab = Tabs[TabID];
   if (!thisTab) return false;
   if (!thisTab?.closable) return false;
   removeFromArray(tabHistory, TabID);
-  delete currentTabs[TabID];
+  delete Tabs[TabID];
   if (tabHistory.length > 0) {
     const lastTabID = tabHistory[tabHistory.length - 1];
-    const lastTab = currentTabs[lastTabID];
+    const lastTab = Tabs[lastTabID];
     if (lastTab !== undefined) {
       lastTab.open = true;
     }
