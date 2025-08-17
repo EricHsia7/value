@@ -63,9 +63,11 @@ function updateTabs(): void {
     function updateClosable(thisTabElement: HTMLElement, currentTab: Tab) {
       thisTabElement.setAttribute('closable', booleanToString(currentTab.closable));
       if (currentTab.closable) {
-        // TODO: add closeTab
+        thisTabElement.onclick = function () {
+          closeTab(currentTab.id);
+        };
       } else {
-        // TODO: remove closeTab
+        thisTabElement.onclick = function () {};
       }
     }
 
@@ -75,7 +77,7 @@ function updateTabs(): void {
 
     function updateOnclick(thisTabElement: HTMLElement, currentTab: Tab) {
       thisTabElement.onclick = function () {
-        // TODO: switch pages
+        openTab(currentTab.id);
       };
     }
 
@@ -192,7 +194,9 @@ export function openTab(TabID: Tab['id']): boolean {
 
     // update tabs
     updateTabs();
+    return true;
   }
+  return false;
 }
 
 export function closeTab(TabID: Tab['id']): boolean {

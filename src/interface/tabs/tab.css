@@ -70,7 +70,7 @@
 }
 
 .css_tabs .css_tab[closable="false"] .css_tab_close {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 .css_tabs .css_tab .css_tab_close span.css_material_symbols_rounded {
