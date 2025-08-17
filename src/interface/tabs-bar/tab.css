@@ -14,6 +14,9 @@
   border-right-style: solid;
   border-right-color: var(--v-cssvar-ededf2);
   border-right-width: 1px;
+  border-top-style: solid;
+  border-top-color: var(--v-cssvar-ededf2);
+  border-top-width: 1px;
 }
 
 /* open: false */

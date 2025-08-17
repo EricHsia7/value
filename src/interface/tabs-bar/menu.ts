@@ -45,7 +45,11 @@ export function updateTabsBarMenu(menuItems: TabsBarMenuItemArray): void {
     }
 
     function updateAction(thisMenuItemElement: HTMLElement, currentMenuItem: TabsBarMenuItem): void {
-      thisMenuItemElement.onclick = currentMenuItem.action;
+      thisMenuItemElement.onclick = function (event) {
+        event.stopPropagation();
+        currentMenuItem.action();
+        closeTabsBarMenu();
+      };
     }
 
     if (previousMenuItem !== undefined) {

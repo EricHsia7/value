@@ -39,7 +39,7 @@
   right: calc(0px + 5px);
   width: clamp(150px, 33%, 250px);
   min-height: 35px;
-  display: inline-flex;
+  display: inline-block;
   background-color: var(--v-cssvar-ffffff);
   border-radius: 10px;
   border-style: solid;
