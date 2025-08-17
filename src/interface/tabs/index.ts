@@ -46,10 +46,6 @@ function generateTabElement(): HTMLElement {
 
 function updateTabs(): void {
   function updateTab(thisTabElement: HTMLElement, currentTab: Tab, previousTab: Tab | undefined): void {
-    function updateTabID(thisTabElement: HTMLElement, currentTab: Tab) {
-      thisTabElement.setAttribute('tab-id', currentTab.id);
-    }
-
     function updateIcon(thisTabElement: HTMLElement, currentTab: Tab) {
       const iconElement = elementQuerySelector(thisTabElement, '.css_tab_icon');
       iconElement.innerHTML = getIconHTML(currentTab.icon);
@@ -73,18 +69,12 @@ function updateTabs(): void {
 
     function updateOpen(thisTabElement: HTMLElement, currentTab: Tab) {
       thisTabElement.setAttribute('open', booleanToString(currentTab.open));
-    }
-
-    function updateOnclick(thisTabElement: HTMLElement, currentTab: Tab) {
       thisTabElement.onclick = function () {
         openTab(currentTab.id);
       };
     }
 
     if (previousTab !== undefined) {
-      if (currentTab.id !== previousTab.id) {
-        updateTabID(thisTabElement, currentTab);
-      }
       if (currentTab.icon !== previousTab.icon) {
         updateIcon(thisTabElement, currentTab);
       }
@@ -94,19 +84,14 @@ function updateTabs(): void {
       if (currentTab.closable !== previousTab.closable) {
         updateClose(thisTabElement, currentTab);
       }
-      if (currentTab.open !== previousTab.open) {
+      if (currentTab.open !== previousTab.open || currentTab.id !== previousTab.id) {
         updateOpen(thisTabElement, currentTab);
       }
-      if (currentTab.page !== previousTab.page) {
-        updateOnclick(thisTabElement, currentTab);
-      }
     } else {
-      updateTabID(thisTabElement, currentTab);
       updateIcon(thisTabElement, currentTab);
       updateName(thisTabElement, currentTab);
       updateClose(thisTabElement, currentTab);
       updateOpen(thisTabElement, currentTab);
-      updateOnclick(thisTabElement, currentTab);
     }
   }
   const tabElements = Array.from(elementQuerySelectorAll(tabsElement, '.css_tab'));
