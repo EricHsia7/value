@@ -210,12 +210,14 @@ export function closeTab(TabID: Tab['id']): boolean {
   const thisTab = Tabs[TabID];
   if (!thisTab) return false;
   if (!thisTab?.closable) return false;
-  removeFromArray(tabHistory, TabID);
   if (tabHistory.length > 0) {
-    const lastTabID = tabHistory.pop();
-    openTab(lastTabID);
+    const lastTabID = tabHistory.filter((e) => e !== TabID).pop();
+    if (lastTabID !== undefined) {
+      openTab(lastTabID);
+    }
   }
   delete Tabs[TabID];
+  removeFromArray(tabHistory, TabID);
   updateTabs();
   return true;
 }
