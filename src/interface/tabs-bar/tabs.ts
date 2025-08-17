@@ -47,17 +47,17 @@ function generateTabElement(): HTMLElement {
 
 function updateTabs(): void {
   function updateTab(thisTabElement: HTMLElement, currentTab: Tab, previousTab: Tab | undefined): void {
-    function updateIcon(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateIcon(thisTabElement: HTMLElement, currentTab: Tab): void {
       const iconElement = elementQuerySelector(thisTabElement, '.css_tab_icon');
       iconElement.innerHTML = getIconHTML(currentTab.icon);
     }
 
-    function updateName(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateName(thisTabElement: HTMLElement, currentTab: Tab): void {
       const nameElement = elementQuerySelector(thisTabElement, '.css_tab_name');
       nameElement.innerText = currentTab.name;
     }
 
-    function updateClose(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateClose(thisTabElement: HTMLElement, currentTab: Tab): void {
       const closeElement = elementQuerySelector(thisTabElement, '.css_tab_close');
       closeElement.onclick = currentTab.closable
         ? function (event) {
@@ -70,7 +70,7 @@ function updateTabs(): void {
       thisTabElement.setAttribute('closable', booleanToString(currentTab.closable));
     }
 
-    function updateOpen(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateOpen(thisTabElement: HTMLElement, currentTab: Tab): void {
       thisTabElement.setAttribute('open', booleanToString(currentTab.open));
       thisTabElement.onclick = function () {
         openTab(currentTab.id);

@@ -14,7 +14,7 @@ export type TabsBarMenuItemArray = Array<TabsBarMenuItem>;
 const menuButtonElement = documentQuerySelector('.css_tabs_bar_menu_button');
 const menuElement = documentQuerySelector('.css_tabs_bar_menu');
 
-let previousMenuItems = [];
+let previousMenuItems: TabsBarMenuItemArray = [];
 
 function generateMenuItemElement(): HTMLElement {
   const newMenuItemElement = document.createElement('div');
@@ -91,6 +91,6 @@ export function updateTabsBarMenu(menuItems: TabsBarMenuItemArray): void {
   previousMenuItems = menuItems;
 }
 
-export function openTabsBarMenu() {
+export function openTabsBarMenu(): void {
   menuElement.setAttribute('displayed', 'true');
 }
