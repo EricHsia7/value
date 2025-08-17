@@ -190,7 +190,6 @@ export function openTab(TabID: Tab['id']): boolean {
         showPage[nextTab.page](...nextTab.parameters);
       }
     } else {
-      // show the next
       nextTab.open = true;
       tabHistory.push(TabID);
       showPage[nextTab.page](...nextTab.parameters);
@@ -211,12 +210,12 @@ export function closeTab(TabID: Tab['id']): boolean {
   const thisTab = Tabs[TabID];
   if (!thisTab) return false;
   if (!thisTab?.closable) return false;
-  delete Tabs[TabID];
   removeFromArray(tabHistory, TabID);
   if (tabHistory.length > 0) {
-    const lastTabID = tabHistory[tabHistory.length - 1];
+    const lastTabID = tabHistory.pop();
     openTab(lastTabID);
   }
+  delete Tabs[TabID];
   updateTabs();
   return true;
 }
