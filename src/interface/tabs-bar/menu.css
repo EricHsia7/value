@@ -29,6 +29,11 @@
   border-style: solid;
   border-color: var(--v-cssvar-ededf2);
   border-width: 1px;
+  visibility: hidden;
+}
+
+.css_tabs_bar_menu[displayed="true"] {
+  visibility: visible;
 }
 
 /* menu > item */
