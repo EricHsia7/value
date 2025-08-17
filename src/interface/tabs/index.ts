@@ -151,21 +151,25 @@ export function listTabs(): Array<Tab> {
 }
 
 export function openTab(TabID: Tab['id']): boolean {
+  console.log(0, TabID);
   const nextTab = Tabs[TabID];
+  console.log(1, nextTab);
   if (nextTab) {
+    console.log(2);
     // hide the current
     const tabHistoryLength = tabHistory.length;
+    console.log(3, tabHistory, tabHistoryLength);
     if (tabHistoryLength > 0) {
+      console.log(4);
       const lastTabID = tabHistory[tabHistoryLength - 1];
       const currentTab = Tabs[lastTabID];
-      if (currentTab) {
-        if (currentTab.id !== nextTab.id) {
-          currentTab.open = false;
-          nextTab.open = true;
-          if (lastTabID !== TabID) {
-            tabHistory.push(TabID);
-          }
-        }
+      console.log(5, currentTab);
+      if (currentTab && lastTabID !== TabID) {
+        console.log(6, JSON.stringify(Tabs, null, 2));
+        currentTab.open = false;
+        nextTab.open = true;
+        tabHistory.push(TabID);
+        console.log(7, JSON.stringify(Tabs, null, 2));
       }
     } else {
       // show the next
