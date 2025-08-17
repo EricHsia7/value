@@ -1,9 +1,12 @@
 import { documentQuerySelector, elementQuerySelector } from '../../../lib/selector/index';
+import { updateHomePageSymbols } from './symbols/index';
 
 export const HomePage = documentQuerySelector('.css_home_page');
 export const HomePageBodyElement = elementQuerySelector(HomePage, '.css_home_page_body');
 
-function updateHomePage(): void {}
+function updateHomePage(): void {
+  updateHomePageSymbols();
+}
 
 export function showHomePage(): void {
   HomePage.setAttribute('displayed', 'true');

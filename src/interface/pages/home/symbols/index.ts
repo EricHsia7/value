@@ -1,7 +1,11 @@
 import { elementQuerySelector } from '../../../../lib/selector/index';
+import { EvaluatedSymbol, listEvaluatedSymbols } from '../../../../lib/symbol/index';
+import { getIconHTML } from '../../../icons/index';
 import { HomePageBodyElement } from '../index';
 
 const HomePageSymbolsElement = elementQuerySelector(HomePageBodyElement, '.css_home_page_symbols');
+
+let previousEvaluatedSymbolsList: Array<EvaluatedSymbol> = [];
 
 function generateSymbolElement(): HTMLElement {
   const newSymbolElement = document.createElement('div');
@@ -23,34 +27,63 @@ function generateSymbolElement(): HTMLElement {
 }
 
 export function updateHomePageSymbols(): void {
-function updateHomePageSymbol(thisSymbolElement: HTMLElement, thisSymbol) {
+  function updateHomePageSymbol(thisSymbolElement: HTMLElement, currentEvaluatedSymbol: EvaluatedSymbol, previousEvaluatedSymbol: EvaluatedSymbol | undefined): void {
+    function updateIcon(thisSymbolElement: HTMLElement, currentEvaluatedSymbol: EvaluatedSymbol) {
+      const iconElement = elementQuerySelector(thisSymbolElement, '.css_home_page_symbol_icon');
+      iconElement.innerHTML = getIconHTML(currentEvaluatedSymbol.icon);
+    }
 
-}
+    function updateName(thisSymbolElement: HTMLElement, currentEvaluatedSymbol: EvaluatedSymbol) {
+      const nameElement = elementQuerySelector(thisSymbolElement, '.css_home_page_symbol_name');
+      nameElement.innerText = currentEvaluatedSymbol.name;
+    }
 
-    const tabElements = Array.from(elementQuerySelectorAll(tabsElement, '.css_tab'));
-    const tabElementsLength = tabElements.length;
-    const TabsList = listTabs();
-    const TabsListLength = TabsList.length;
-    if (TabsListLength >= tabElementsLength) {
-      const fragment = new DocumentFragment();
-      for (let i = tabElementsLength; i < TabsListLength; i++) {
-        const newTabElement = generateTabElement();
-        fragment.appendChild(newTabElement);
-        tabElements.push(newTabElement);
+    function updateValue(thisSymbolElement: HTMLElement, currentEvaluatedSymbol: EvaluatedSymbol) {
+      const valueElement = elementQuerySelector(thisSymbolElement, '.css_home_page_symbol_value');
+      valueElement.innerText = currentEvaluatedSymbol.value;
+    }
+
+    if (previousEvaluatedSymbol !== undefined) {
+      if (currentEvaluatedSymbol.icon !== previousEvaluatedSymbol.icon) {
+        updateIcon(thisSymbolElement, currentEvaluatedSymbol);
       }
-      tabsElement.append(fragment);
+      if (currentEvaluatedSymbol.name !== previousEvaluatedSymbol.name) {
+        updateName(thisSymbolElement, currentEvaluatedSymbol);
+      }
+      if (currentEvaluatedSymbol.value !== previousEvaluatedSymbol.value) {
+        updateValue(thisSymbolElement, currentEvaluatedSymbol);
+      }
     } else {
-      for (let j = tabElementsLength - 1; j >= TabsListLength; j--) {
-        tabElements[j].remove();
-      }
+      updateIcon(thisSymbolElement, currentEvaluatedSymbol);
+      updateName(thisSymbolElement, currentEvaluatedSymbol);
+      updateValue(thisSymbolElement, currentEvaluatedSymbol);
     }
-  
-    for (let k = 0; k < TabsListLength; k++) {
-      const previousTab = previousTabsList[k];
-      const currentTab = TabsList[k];
-      const thisTabElement = tabElements[k];
-      updateTab(thisTabElement, currentTab, previousTab);
+  }
+
+  const symbolElements = Array.from(elementQuerySelectorAll(HomePageSymbolsElement, '.css_home_page_symbol'));
+  const symbolElementsLength = symbolElements.length;
+  const evaluatedSymbolsList = listEvaluatedSymbols();
+  const evaluatedSymbolsListLength = evaluatedSymbolsList.length;
+  if (evaluatedSymbolsListLength >= symbolElementsLength) {
+    const fragment = new DocumentFragment();
+    for (let i = symbolElementsLength; i < evaluatedSymbolsListLength; i++) {
+      const newSymbolElement = generateSymbolElement();
+      fragment.appendChild(newSymbolElement);
+      symbolElements.push(newSymbolElement);
     }
-  
-    previousTabsList = TabsList;
+    HomePageSymbolsElement.append(fragment);
+  } else {
+    for (let j = symbolElementsLength - 1; j >= evaluatedSymbolsListLength; j--) {
+      symbolElements[j].remove();
+    }
+  }
+
+  for (let k = 0; k < evaluatedSymbolsListLength; k++) {
+    const previousEvaluatedSymbol = previousEvaluatedSymbolsList[k];
+    const currentEvaluatedSymbol = evaluatedSymbolsList[k];
+    const thisSymbolElement = symbolElements[k];
+    updateHomePageSymbol(thisSymbolElement, currentEvaluatedSymbol, previousEvaluatedSymbol);
+  }
+
+  previousEvaluatedSymbolsList = evaluatedSymbolsList;
 }
