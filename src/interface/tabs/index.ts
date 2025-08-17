@@ -4,7 +4,7 @@ import { generateIdentifier } from '../../lib/tools/generate-identifier';
 import { removeFromArray } from '../../lib/tools/remove-from-array';
 import { getIconHTML } from '../icons/index';
 import { MaterialSymbols } from '../icons/material-symbols-type';
-import { Page, showPage } from '../pages/index';
+import { hidePage, Page, showPage } from '../pages/index';
 
 export interface Tab {
   page: Page;
@@ -165,7 +165,6 @@ export function listTabs(): Array<Tab> {
 export function openTab(TabID: Tab['id']): boolean {
   const nextTab = Tabs[TabID];
   if (nextTab) {
-    // hide the current
     const tabHistoryLength = tabHistory.length;
     if (tabHistoryLength > 0) {
       const lastTabID = tabHistory[tabHistoryLength - 1];
@@ -174,6 +173,7 @@ export function openTab(TabID: Tab['id']): boolean {
         currentTab.open = false;
         nextTab.open = true;
         tabHistory.push(TabID);
+        hidePage[currentTab.page]();
         showPage[nextTab.page](...nextTab.parameters);
       }
     } else {
