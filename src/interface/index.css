@@ -4,7 +4,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  background: var(--v-cssvar-ffffff);
+  background: var(--v-cssvar-f9f9fb);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
