@@ -4,7 +4,8 @@ import { generateIdentifier } from '../../lib/tools/generate-identifier';
 import { removeFromArray } from '../../lib/tools/remove-from-array';
 import { getIconHTML } from '../icons/index';
 import { MaterialSymbols } from '../icons/material-symbols-type';
-import { hidePage, Page, showPage } from '../pages/index';
+import { hidePage, Page, showPage, tabsBarMenuItems } from '../pages/index';
+import { updateTabsBarMenu } from './menu';
 
 export interface Tab {
   page: Page;
@@ -46,17 +47,17 @@ function generateTabElement(): HTMLElement {
 
 function updateTabs(): void {
   function updateTab(thisTabElement: HTMLElement, currentTab: Tab, previousTab: Tab | undefined): void {
-    function updateIcon(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateIcon(thisTabElement: HTMLElement, currentTab: Tab): void {
       const iconElement = elementQuerySelector(thisTabElement, '.css_tab_icon');
       iconElement.innerHTML = getIconHTML(currentTab.icon);
     }
 
-    function updateName(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateName(thisTabElement: HTMLElement, currentTab: Tab): void {
       const nameElement = elementQuerySelector(thisTabElement, '.css_tab_name');
       nameElement.innerText = currentTab.name;
     }
 
-    function updateClose(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateClose(thisTabElement: HTMLElement, currentTab: Tab): void {
       const closeElement = elementQuerySelector(thisTabElement, '.css_tab_close');
       closeElement.onclick = currentTab.closable
         ? function (event) {
@@ -69,7 +70,7 @@ function updateTabs(): void {
       thisTabElement.setAttribute('closable', booleanToString(currentTab.closable));
     }
 
-    function updateOpen(thisTabElement: HTMLElement, currentTab: Tab) {
+    function updateOpen(thisTabElement: HTMLElement, currentTab: Tab): void {
       thisTabElement.setAttribute('open', booleanToString(currentTab.open));
       thisTabElement.onclick = function () {
         openTab(currentTab.id);
@@ -185,6 +186,9 @@ export function openTab(TabID: Tab['id']): boolean {
 
     // update tabs
     updateTabs();
+
+    // update menu button
+    updateTabsBarMenu(tabsBarMenuItems[nextTab.page]);
     return true;
   }
   return false;

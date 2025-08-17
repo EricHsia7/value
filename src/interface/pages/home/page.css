@@ -1,5 +1,5 @@
-.css_editor_page {
-  position: fixed;
+.css_home_page {
+ position: fixed;
   top: 35px;
   left: 0px;
   width: 100%;
@@ -9,6 +9,6 @@
   visibility: hidden;
 }
 
-.css_editor_page[displayed="true"] {
+.css_home_page[displayed="true"] {
   visibility: visible;
 }

@@ -1,3 +1,4 @@
+import { TabsBarMenuItemArray } from '../tabs-bar/menu';
 import { hideEditorPage, showEditorPage } from './editor/index';
 import { hideHomePage, showHomePage } from './home/index';
 import { hideSettingsPage, showSettingsPage } from './settings/index';
@@ -17,4 +18,19 @@ export const hidePage: { [page: Page]: Function } = {
   home: hideHomePage,
   settings: hideSettingsPage,
   editor: hideEditorPage
+};
+
+export const tabsBarMenuItems: { [page: Page]: TabsBarMenuItemArray } = {
+  home: [
+    {
+      key: 'home--new-symbol',
+      name: 'New Symbol',
+      icon: 'add',
+      action: function () {
+        console.log('new symbol');
+      }
+    }
+  ],
+  settings: [],
+  editor: []
 };

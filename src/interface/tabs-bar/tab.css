@@ -18,7 +18,7 @@
 
 /* open: false */
 .css_tabs .css_tab[open="false"] {
-  background-color: var(--v-cssvar-f9f9fb);
+  background-color: transparent;
 }
 
 /* open: true */

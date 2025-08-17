@@ -1,0 +1,8 @@
+.css_tabs_bar_separator {
+  position: fixed;
+  left: 0px;
+  top: 34px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--v-cssvar-ededf2);
+}
