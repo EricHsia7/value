@@ -1,8 +1,9 @@
 import { elementQuerySelector } from '../../../../lib/selector/index';
 import { EvaluatedSymbol, listEvaluatedSymbols } from '../../../../lib/symbol/index';
 import { getIconHTML } from '../../../icons/index';
-import { HomePageBodyElement } from '../index';
 
+const HomePage = documentQuerySelector('.css_home_page');
+const HomePageBodyElement = elementQuerySelector(HomePage, '.css_home_page_body');
 const HomePageSymbolsElement = elementQuerySelector(HomePageBodyElement, '.css_home_page_symbols');
 
 let previousEvaluatedSymbolsList: Array<EvaluatedSymbol> = [];
