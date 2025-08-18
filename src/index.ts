@@ -15,6 +15,8 @@ import './interface/tabs-bar/tab.css';
 import './interface/tabs-bar/menu.css';
 
 import './interface/pages/home/page.css';
+import './interface/pages/home/body.css';
+import './interface/pages/home/symbols/index.css';
 
 import './interface/pages/search/page.css';
 

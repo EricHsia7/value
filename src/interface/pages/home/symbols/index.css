@@ -1,0 +1,70 @@
+/* home > body > symbols */
+.css_home_page .css_home_page_body .css_home_page_symbols {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+/* home > body > symbols > symbol */
+.css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  border-radius: var(--v-cssvar-border-radius);
+  background-color: var(--v-cssvar-ffffff);
+  border-style: solid;
+  border-color: var(--v-cssvar-ededf2);
+  border-width: 1px;
+  box-sizing: border-box;
+}
+
+/* home > body > symbols > symbol > icon */
+.css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol .css_home_page_symbol_icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol .css_home_page_symbol_icon span.css_material_symbols_rounded {
+  width: 20px;
+  height: 20px;
+  color: var(--v-cssvar-333333);
+}
+
+/* home > body > symbols > symbol > name */
+.css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol .css_home_page_symbol_name {
+  position: absolute;
+  top: 5px;
+  left: calc(5px + 25px + 5px);
+  width: calc(100% - 5px - 25px - 5px - 5px);
+  height: 25px;
+  font-size: 16px;
+  line-height: 25px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: keep-all;
+  white-space: nowrap;
+  color: var(--v-cssvar-333333);
+}
+
+/* home > body > symbols > symbol > value */
+.css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol .css_home_page_symbol_value {
+  position: absolute;
+  top: calc(5px + 25px + 5px);
+  left: 5px;
+  width: calc(100% - 5px - 5px);
+  height: calc(70px - 5px - 25px - 5px - 5px);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: keep-all;
+  white-space: nowrap;
+  color: var(--v-cssvar-333333);
+}

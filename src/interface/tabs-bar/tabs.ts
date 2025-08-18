@@ -98,6 +98,7 @@ function updateTabs(): void {
       updateOpen(thisTabElement, currentTab);
     }
   }
+
   const tabElements = Array.from(elementQuerySelectorAll(tabsElement, '.css_tab'));
   const tabElementsLength = tabElements.length;
   const TabsList = listTabs();
