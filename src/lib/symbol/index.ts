@@ -164,7 +164,7 @@ export async function moveVariableInSymbol(SymbolID: Symbol['id'], VariableID: V
   }
 }
 
-export async function evaluateSymbol(thisSymbol: Symbol): EvaluatedSymbol {
+export function evaluateSymbol(thisSymbol: Symbol): EvaluatedSymbol {
   const fallback: EvaluatedSymbol = {
     type: 'evaluated-symbol',
     name: thisSymbol.name,
