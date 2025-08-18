@@ -19,10 +19,6 @@
   margin-bottom: 10px;
 }
 
-.css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol:last-child {
-  margin-bottom: 0px;
-}
-
 /* home > body > symbols > symbol > icon */
 .css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol .css_home_page_symbol_icon {
   position: absolute;
