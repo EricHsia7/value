@@ -1,4 +1,7 @@
-.css_edit_symbol_page .css_edit_symbol_body .css_edit_symbol_property[property="name"] .css_edit_symbol_property_content input[type="text"] {
+.css_edit_symbol_page .css_edit_symbol_body .css_edit_symbol_property[property="name"] .css_edit_symbol_property_content input {
+  color: red;
+  font-size: 1000px;
+  /*
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -10,4 +13,5 @@
   border-color: var(--v-cssvar-ededf2);
   border-width: 1px;
   border-radius: var(--v-cssvar-border-radius);
+  */
 }
