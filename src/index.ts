@@ -30,9 +30,9 @@ window.value = {
   initialize: async function () {
     const status = await checkAppVersion();
     if (status === 'ok') {
-      initializeTabs();
       await initializeVariables();
       await initializeSymbols();
+      initializeTabs();
     }
   },
   secondlyInitialize: function () {}
