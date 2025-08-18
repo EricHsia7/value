@@ -39,11 +39,11 @@ export async function initializeSymbols() {
   }
 }
 
-export async function createSymbol(name: Symbol['name'] = 'Unnamed Symbol'): Promise<Symbol['id']> {
+export async function createSymbol(): Promise<Symbol['id']> {
   const SymbolID = generateIdentifier();
   const object: Symbol = {
     type: 'symbol',
-    name: name,
+    name: 'New Symbol',
     description: '',
     icon: 'glyphs',
     variables: [],

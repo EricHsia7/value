@@ -1,0 +1,19 @@
+/* edit-variable */
+.css_edit_variable_page {
+  position: fixed;
+  top: 35px;
+  left: 0px;
+  width: 100%;
+  height: calc(100% - 35px);
+  background-color: var(--v-cssvar-ffffff);
+  overflow: hidden;
+  visibility: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.css_edit_variable_page[displayed="true"] {
+  visibility: visible;
+}

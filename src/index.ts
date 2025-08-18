@@ -22,7 +22,9 @@ import './interface/pages/search/page.css';
 
 import './interface/pages/settings/page.css';
 
-import './interface/pages/editor/page.css';
+import './interface/pages/edit-symbol/page.css';
+
+import './interface/pages/edit-variable/page.css';
 
 window.value = {
   initialize: async function () {
