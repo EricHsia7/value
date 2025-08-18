@@ -1,13 +1,13 @@
 const localforage = require('localforage');
 
 let storage = {
-  symbolsStore: false, // 0
-  variablesStore: false, // 1
-  settingsStore: false, // 2
-  cacheStore: false // 3
+  v_symbolsStore: false, // 0
+  v_variablesStore: false, // 1
+  v_settingsStore: false, // 2
+  v_cacheStore: false // 3
 };
 
-const stores = ['symbolsStore', 'variablesStore', 'settingsStore', 'cacheStore'];
+const stores = ['v_symbolsStore', 'v_variablesStore', 'v_settingsStore', 'v_cacheStore'];
 
 async function dropInstance(store: number): Promise<any> {
   const storeKey = stores[store];
