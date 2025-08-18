@@ -40,7 +40,7 @@
   width: clamp(150px, 33%, 250px);
   min-height: 35px;
   display: inline-block;
-  background-color: var(--v-cssvar-f9f9fb);
+  background-color: var(--v-cssvar-ffffff);
   border-radius: var(--v-cssvar-border-radius);
   border-style: solid;
   border-color: var(--v-cssvar-ededf2);

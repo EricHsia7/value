@@ -9,8 +9,8 @@
 @media(prefers-color-scheme:dark) {
   :root {
     --v-cssvar-ffffff: #040406;
-    --v-cssvar-f9f9fb: #0d0d10;
-    --v-cssvar-ededf2: #202026;
+    --v-cssvar-f9f9fb: #202026;
+    --v-cssvar-ededf2: #0d0d10;
     --v-cssvar-333333: #ffffff;
   }
 }
