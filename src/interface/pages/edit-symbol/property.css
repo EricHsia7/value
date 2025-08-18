@@ -1,0 +1,28 @@
+/* edit-symbol > body > property */
+.css_edit_symbol_page .css_edit_symbol_body .css_edit_symbol_property {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* edit-symbol > body > property > name */
+.css_edit_symbol_page .css_edit_symbol_body .css_edit_symbol_property .css_edit_symbol_property_name {
+  position: relative;
+  width: 100%;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--v-cssvar-333333);
+  line-height: 35px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* edit-symbol > body > property > content */
+.css_edit_symbol_page .css_edit_symbol_body .css_edit_symbol_property .css_edit_symbol_property_content {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}

@@ -1,0 +1,8 @@
+/* edit-symbol > body */
+.css_edit_symbol_page .css_edit_symbol_body {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  display: inline-block;
+}
