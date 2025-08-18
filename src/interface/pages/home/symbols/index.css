@@ -16,6 +16,11 @@
   border-color: var(--v-cssvar-ededf2);
   border-width: 1px;
   box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol:last-child {
+  margin-bottom: 0px;
 }
 
 /* home > body > symbols > symbol > icon */
@@ -43,7 +48,7 @@
   left: calc(5px + 25px + 5px);
   width: calc(100% - 5px - 25px - 5px - 5px);
   height: 25px;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 25px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -55,13 +60,13 @@
 /* home > body > symbols > symbol > value */
 .css_home_page .css_home_page_body .css_home_page_symbols .css_home_page_symbol .css_home_page_symbol_value {
   position: absolute;
-  top: calc(5px + 25px + 5px);
+  top: calc(5px + 25px);
   left: 5px;
   width: calc(100% - 5px - 5px);
-  height: calc(70px - 5px - 25px - 5px - 5px);
-  font-size: 22px;
+  height: calc(70px - 5px - 25px - 5px);
+  font-size: 24px;
   font-weight: 600;
-  line-height: 30px;
+  line-height: 35px;
   text-overflow: ellipsis;
   overflow: hidden;
   word-break: keep-all;
