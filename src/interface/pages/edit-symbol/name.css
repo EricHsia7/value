@@ -9,4 +9,7 @@
   border-color: var(--v-cssvar-ededf2);
   border-width: 1px;
   border-radius: var(--v-cssvar-border-radius);
+  padding: 0px 10px;
+  box-sizing: border-box;
+  caret-color: var(--v-cssvar-333333);
 }
