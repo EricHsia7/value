@@ -26,6 +26,7 @@ import './interface/pages/edit-symbol/page.css';
 import './interface/pages/edit-symbol/body.css';
 import './interface/pages/edit-symbol/property.css';
 import './interface/pages/edit-symbol/name.css';
+import './interface/pages/edit-symbol/description.css';
 
 import './interface/pages/edit-variable/page.css';
 

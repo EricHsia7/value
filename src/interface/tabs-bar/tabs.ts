@@ -187,7 +187,7 @@ export function openTab(TabID: Tab['id']): boolean {
         currentTab.open = false;
         nextTab.open = true;
         if (lastTabID !== TabID) tabHistory.push(TabID);
-        hidePage[currentTab.page]();
+        hidePage[currentTab.page](...currentTab.parameters);
         showPage[nextTab.page](...nextTab.parameters);
       }
     } else {
