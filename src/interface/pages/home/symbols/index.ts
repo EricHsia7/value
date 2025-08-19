@@ -1,6 +1,7 @@
 import { documentQuerySelector, elementQuerySelector, elementQuerySelectorAll } from '../../../../lib/selector/index';
 import { EvaluatedSymbol, listEvaluatedSymbols } from '../../../../lib/symbol/index';
 import { getIconHTML } from '../../../icons/index';
+import { openTab, registerTab } from '../../../tabs-bar/tabs';
 
 const HomePage = documentQuerySelector('.css_home_page');
 const HomePageBodyElement = elementQuerySelector(HomePage, '.css_home_page_body');
@@ -44,6 +45,13 @@ export function updateHomePageSymbols(): void {
       valueElement.innerText = currentEvaluatedSymbol.value;
     }
 
+    function updateOpen(thisSymbolElement: HTMLElement, currentEvaluatedSymbol: EvaluatedSymbol) {
+      thisSymbolElement.onclick(function () {
+        const TabID = registerTab('editSymbol', 'Edit Symbol', 'edit', false, true, [currentEvaluatedSymbol.id]);
+        openTab(TabID);
+      });
+    }
+
     if (previousEvaluatedSymbol !== undefined) {
       if (currentEvaluatedSymbol.icon !== previousEvaluatedSymbol.icon) {
         updateIcon(thisSymbolElement, currentEvaluatedSymbol);
@@ -54,10 +62,14 @@ export function updateHomePageSymbols(): void {
       if (currentEvaluatedSymbol.value !== previousEvaluatedSymbol.value) {
         updateValue(thisSymbolElement, currentEvaluatedSymbol);
       }
+      if (currentEvaluatedSymbol.id !== previousEvaluatedSymbol.id) {
+        updateOpen(thisSymbolElement, currentEvaluatedSymbol);
+      }
     } else {
       updateIcon(thisSymbolElement, currentEvaluatedSymbol);
       updateName(thisSymbolElement, currentEvaluatedSymbol);
       updateValue(thisSymbolElement, currentEvaluatedSymbol);
+      updateOpen(thisSymbolElement, currentEvaluatedSymbol);
     }
   }
 
