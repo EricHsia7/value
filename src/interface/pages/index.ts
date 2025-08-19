@@ -38,7 +38,7 @@ export const tabsBarMenuItems: { [page: Page]: TabsBarMenuItemArray } = {
       icon: 'add',
       action: async function () {
         const SymbolID = await createSymbol();
-        const TabID = registerTab('editSymbol', 'New Symbol', 'edit', false, true, [SymbolID]);
+        const TabID = registerTab('editSymbol', 'New Symbol', 'edit', true, true, [SymbolID]);
         // The tab name is same as the symbol's name
         openTab(TabID);
       }

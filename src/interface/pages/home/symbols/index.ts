@@ -47,7 +47,7 @@ export function updateHomePageSymbols(): void {
 
     function updateOpen(thisSymbolElement: HTMLElement, currentEvaluatedSymbol: EvaluatedSymbol) {
       thisSymbolElement.onclick = function () {
-        const TabID = registerTab('editSymbol', currentEvaluatedSymbol.name, 'edit', false, true, [currentEvaluatedSymbol.id]);
+        const TabID = registerTab('editSymbol', currentEvaluatedSymbol.name, 'edit', true, true, [currentEvaluatedSymbol.id]);
         openTab(TabID);
       };
     }
@@ -62,7 +62,7 @@ export function updateHomePageSymbols(): void {
       if (currentEvaluatedSymbol.value !== previousEvaluatedSymbol.value) {
         updateValue(thisSymbolElement, currentEvaluatedSymbol);
       }
-      if (currentEvaluatedSymbol.id !== previousEvaluatedSymbol.id) {
+      if (currentEvaluatedSymbol.id !== previousEvaluatedSymbol.id || currentEvaluatedSymbol.name !== previousEvaluatedSymbol.name) {
         updateOpen(thisSymbolElement, currentEvaluatedSymbol);
       }
     } else {
