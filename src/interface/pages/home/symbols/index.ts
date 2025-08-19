@@ -47,7 +47,7 @@ export function updateHomePageSymbols(): void {
 
     function updateOpen(thisSymbolElement: HTMLElement, currentEvaluatedSymbol: EvaluatedSymbol) {
       thisSymbolElement.onclick(function () {
-        const TabID = registerTab('editSymbol', 'Edit Symbol', 'edit', false, true, [currentEvaluatedSymbol.id]);
+        const TabID = registerTab('editSymbol', currentEvaluatedSymbol.name, 'edit', false, true, [currentEvaluatedSymbol.id]);
         openTab(TabID);
       });
     }
